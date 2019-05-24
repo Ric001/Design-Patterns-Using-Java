@@ -9,4 +9,8 @@ public abstract class Duck {
     public void performQuack() {
         quackBehavior.quack();
     }
+
+    public void setQuackBehavior(QuackBehavior behavior) {
+        this.quackBehavior = behavior;
+    }
 }

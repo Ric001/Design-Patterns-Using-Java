@@ -4,6 +4,7 @@ public class TestDrive {
         ((MallardDuck) mallard).display();
         mallard.performFly();
         mallard.performQuack();
+        mallard.setQuackBehavior(new Squake());
         
     }
 }
