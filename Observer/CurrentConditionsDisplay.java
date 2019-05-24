@@ -27,6 +27,11 @@ public class CurrentConditionsDisplay implements DisplayElement, Observer {
         + "F degrees and " + humidity + "% humidity");
     }
 
+    public void askToUnregistering() {
+        if (weatherData == null)
+            return;
+        weatherData.removeObserver(this);
+    }
 
 
 }
