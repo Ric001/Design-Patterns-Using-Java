@@ -6,6 +6,7 @@ public class TestDrive {
         
         Observer currentConditionsDisp = new CurrentConditionsDisplay(new WeatherData());
         weatherData.addObserver(currentConditionsDisp);
+        weatherData.addObserver(new ForeCastDisplay(weatherData));
         ((WeatherData) weatherData).setMeasurements(120f, 22f, 10f);
     }
 }
