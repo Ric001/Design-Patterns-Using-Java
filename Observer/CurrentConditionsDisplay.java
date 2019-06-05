@@ -1,37 +1,47 @@
-import java.util.Logging.Logger;
-
+import java.util.logging.Logger;
+import java.util.Observer;
+import java.util.Observable;
 public class CurrentConditionsDisplay implements DisplayElement, Observer {
+    
     private float humidity;
     private float temperature;
-    private float pressure;
-    private Subject weatherData;
+    private Observable subject;
 
     public final Logger LOGGER = Logger.getLogger(CurrentConditionsDisplay.class.getName());
     
-    public CurrentConditionsDisplay(Subject weatherData) {
-        this.weatherData = weatherData;
-        weatherData.registerObserver(this);
+    public CurrentConditionsDisplay(Observable weatherData) {
+        LOGGER.info("[CREATING CurrentConditionsDisplay(Observable)]");
+        this.subject = weatherData;
+        subject.addObserver(this);
     }
 
     @Override
-    public void update(float temp, float humidity, float pressure) {
-        this.temperature = temp;
-        this.humidity = humidity;
-        this.pressure = pressure;
-        display();
+    public void update(Observable o, Object obj) {
+        LOGGER.info("[ENTERING update(Observable, Object)]");
+        if (o instanceof WeatherData) {
+            LOGGER.info("[Object is instance of WeatherData Class]");
+            WeatherData wd = (WeatherData) o;
+            this.humidity = wd.getHummidity();
+            this.temperature = wd.getTemperature();  
+            display();
+        }
+        
     }
 
     @Override
     public void display() {
+        LOGGER.info("[ENTERING display()]");
         System.out.println("Current conditions: " + temperature
         + "F degrees and " + humidity + "% humidity");
     }
 
-    public void askToUnregistering() {
-        if (weatherData == null)
-            return;
-        weatherData.removeObserver(this);
+    public Observable getObservable() {
+        LOGGER.info("[GETTING the observable subject]");
+        return subject;
     }
 
-
+    public void setObservable(Observable observable) {
+        LOGGER.info("[SETTING the Observable subject]");
+        subject = observable;
+    }
 }

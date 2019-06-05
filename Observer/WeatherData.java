@@ -1,42 +1,43 @@
-import java.util.ArrayList;
+import java.util.Observable;
 import java.util.logging.Logger;
-public class WeatherData implements Subject {
+public class WeatherData extends Observable {
 
-    private ArrayList<Observer> observers;
     private float temp;
     private float humidity;
     private float pressure;
     public static final Logger LOGGER = Logger.getLogger(WeatherData.class.getName());
-    
-    public WeatherData() {
-        observers = new ArrayList<Observer>();
-    }
-
-    public void registerObserver(Observer o) {
-        observers.add(o);
-    }
-
-    public void removeObserver(Observer o) {
-        int i = observers.indexOf(o);
-        if (i != 0) 
-            observers.remove(i);
-        
-    }
-
-    public void notifyObservers() {
-        for (Observer o : observers) {
-            o.update(temp, humidity, pressure);
-        }
-    }
 
     public void measurementsChanged() {
-        notifyObservers();
+        LOGGER.info("[ ENTERING measurementsChanged() ]");
+        setChanged();
+        notifyObservers(this);
     }
 
     public void setMeasurements(float temp, float humidity, float pressure) {
+        LOGGER.info("[ENTERING setMeasurements(float, float, float)]");
         this.temp = temp;
         this.humidity = humidity;
         this.pressure = pressure;
         measurementsChanged();
+    }
+
+    public float getTemperature() {
+        return temp;
+    }
+
+    public void setTemperature(float temp) {
+        this.temp = temp;
+    }
+
+    public float getHummidity() {
+        return humidity;
+    }
+
+    public void setPressure(float pressure) {
+        this.pressure = pressure;
+    }
+
+    public float getPressure() {
+        return pressure;
     }
 }
