@@ -77,7 +77,7 @@ public class App {
     public static void filesAndDirs() {
         try {
             File books = new File("books");
-            books.mkdir();
+          books.mkdir();
             if (books.isDirectory()) {
                 Logger.getLogger(App.class.getName()).info(books.getName() + " is my directory");                
             }
