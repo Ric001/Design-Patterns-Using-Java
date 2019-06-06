@@ -19,7 +19,8 @@ public class App {
         fileWriterAndReaderExample();
         fileWithBytes();
         filesAndDirs();
-    
+        deletingAndRenamingFiles();
+        listFiles();
     }
 
     private static void fileExample() {
@@ -100,4 +101,39 @@ public class App {
             reader.close();
         } catch (IOException e) { e.printStackTrace(); }
     }
+
+    public static void deletingAndRenamingFiles() {
+        try{
+            File delDir = new File("delDir");
+            delDir.mkdir();
+            
+            File delFile1 = new File(delDir, "delFile1.txt");
+            delFile1.createNewFile();
+
+            File delFile2 = new File(delDir, "delFile2.txt");
+            delFile2.createNewFile();
+            
+            delFile1.delete();
+            System.out.println("delDir is " + delDir.delete());
+            
+            File newName = new File("newName.txt");
+            delFile2.renameTo(newName);
+            
+            File newDir = new File("currentDir");
+            delDir.renameTo(newDir);
+
+            
+
+        } catch(Exception e) { e.printStackTrace(); }
+    }
+
+    public static void listFiles() {
+        try {
+            File currentDir = new File("currentDir");
+            String[] fileList = currentDir.list();
+            for (String fileName : fileList) 
+                System.out.println("File Name: " + fileName);
+            System.out.println("File List Count on currentDir: " + fileList.length);
+        } catch (Exception e) { e.printStackTrace(); }
+    } 
 }
