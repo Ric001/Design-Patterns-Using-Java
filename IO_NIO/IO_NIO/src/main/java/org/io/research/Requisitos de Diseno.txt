@@ -1,4 +1,0 @@
-1 - Analizar los campos comunes y los campos cambiantes de cada formulario.
-2 - Desarrollar una familia de algoritmos que convierta cada aspecto del formulario intercambiable. 
-
-Lista de problemas restantes...
