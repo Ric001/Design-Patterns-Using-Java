@@ -2,7 +2,8 @@ package org.io.research;
 
 public class App {
     public static void main(String[] args) {
-        new App().sectionOne();
+        //new App().sectionOne();
+        new App().sectionTwo();
     }    
 
     public void sectionOne() {
@@ -12,7 +13,13 @@ public class App {
         SectionOne.filesAndDirs();
         SectionOne.deletingAndRenamingFiles();
         SectionOne.listFiles();
-
         SectionOne.consoleObj();
+    }
+
+    private void sectionTwo() {
+        SectionTwo.usePath();
+        SectionTwo.converFileToPath();
+        SectionTwo.creatingFiles(); 
+        SectionTwo.performingMoreOperations();
     }
 }
