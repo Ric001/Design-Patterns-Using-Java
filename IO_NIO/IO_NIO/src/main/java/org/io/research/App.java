@@ -21,5 +21,7 @@ public class App {
         SectionTwo.converFileToPath();
         SectionTwo.creatingFiles(); 
         SectionTwo.performingMoreOperations();
+        SectionTwo.getPathInfo();
+        SectionTwo.getPaths();
     }
 }

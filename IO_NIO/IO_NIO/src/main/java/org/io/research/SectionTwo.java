@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class SectionTwo {
+
     public static void usePath() {
         Path path = Paths.get("temp", "file.txt");
         Path dir = Paths.get("temp/");
@@ -46,13 +48,52 @@ public class SectionTwo {
         Path dir = Paths.get("temp2/");
         Path dir2 = Paths.get("temp3");
         try { 
-            
-            //Files.createDirectory(dir);
-            //Files.createDirectory(dir2);
-            //Files.createFile(source);
-            Files.copy(source, target);
-            //Files.delete(target);
-            //Files.move(source, target);
+            Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) { e.printStackTrace(); }
+    }
+
+    public static void getPathInfo() {
+        Path path = Paths.get("C:/home/java/workspace");
+        System.out.println("getFileName: " + path.getFileName());
+        System.out.println("getName(1): " + path.getName(1));
+        System.out.println("getNameCount: " + path.getNameCount());
+        System.out.println("getParent: " + path.getParent());
+        System.out.println("subpath(0,2): " + path.subpath(0, 2));
+        System.out.println("toString: " + path.toString());
+    }
+
+    public static void getPaths() {
+        int spaces = 1; 
+        Path myPath = Paths.get("tmp", "dir1", "dir2", "dir3", "file.txt");
+        for (Path subPath : myPath) {
+            System.out.format("%" + spaces + "s%s%n", "", subPath);
+            spaces += 2;
+        }
+    }
+
+    public static void normalizingPaths() {
+        String buildProject = "/Build_Project/scripts";
+        
+        String upTwoDirectories = "../..";
+        
+        String myProject = "/My_Project/source";
+        Path path = Paths.get(buildProject, upTwoDirectories, myProject);
+        
+        System.out.println("Original: " + path);
+        System.out.println("Normalized: " + path.normalize());
+    }
+    
+    public static void resolveSomePaths() {
+        Path dir = Paths.get("/home/java");
+        Path file = Paths.get("models/Mode.pdf");
+        Path result = dir.resolve(file);
+        System.out.println("result = " + result);
+    }
+
+    public static void relativizeSomePaths() {
+        Path dir = Paths.get("/home/java");
+        Path music = Paths.get("/home/java/country/Swift.mp3");
+        Path mp3 = dir.relativize(music);
+        System.out.println(mp3);
     }
 }

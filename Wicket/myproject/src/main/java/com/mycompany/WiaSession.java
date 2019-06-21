@@ -9,15 +9,13 @@ import org.apache.wicket.Session;
 public class WiaSession extends WebSession {
 
     private static final long serialVersionUID = 1L;
-    
+
     private User user;
 
     public WiaSession(Request request) {
         super(request);
         setLocale(Locale.ENGLISH);
     }
-
-    
 
     public static WiaSession get() {
         return (WiaSession) Session.get();
