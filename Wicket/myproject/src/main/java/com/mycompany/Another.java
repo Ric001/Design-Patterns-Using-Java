@@ -19,12 +19,9 @@ public class Another extends WebPage {
         form.add(field = new TextField<>("field", new Model<>("")))
             .add(new Button("button") {
             private static final long serialVersionUID = 1L;
-
             @Override
             public void onSubmit() {
-                String value = (String) field.getModelObject();
-                label.setDefaultModelObject(value);
-                field.setDefaultModelObject("");
+                performOnSubmit();
             }
         });
         
@@ -32,6 +29,12 @@ public class Another extends WebPage {
         label.setDefaultModel(new Model<>(""));
         add(label)
         .add(form);
+    }
+
+    public void performOnSubmit() {
+        String value = field.getInput();
+        label.setDefaultModelObject(value);
+        field.setDefaultModelObject("");
     }
 
     public TextField<String> getTextField() {
