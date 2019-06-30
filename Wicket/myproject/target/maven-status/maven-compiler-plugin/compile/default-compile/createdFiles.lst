@@ -1,2 +1,4 @@
+com\mycompany\WiaSession.class
 com\mycompany\HomePage.class
+com\mycompany\User.class
 com\mycompany\WicketApplication.class
