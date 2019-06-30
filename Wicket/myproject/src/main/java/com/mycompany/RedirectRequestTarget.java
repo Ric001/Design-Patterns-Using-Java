@@ -21,10 +21,11 @@ public class RedirectRequestTarget implements IRequestHandler {
     }
 	
     @Override
-    public void respond(IRequestCycle requestCycle) {
+    public void respond(IRequestCycle iRequestCycle) {
+        RequestCycle requestCycle = (RequestCycle) iRequestCycle;
         Response response = requestCycle.getResponse();
         response.reset();
-       // response.redirectUrl(redirectUrl);
+        //requestCycle.get().setRequestTarget
     }
 
     public String getRedirectUrl() {
