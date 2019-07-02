@@ -45,8 +45,6 @@ public class SectionTwo {
     public static void performingMoreOperations() {
         Path source = Paths.get("temp2/test1.txt");
         Path target = Paths.get("temp3/test2.txt");
-        Path dir = Paths.get("temp2/");
-        Path dir2 = Paths.get("temp3");
         try { 
             Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) { e.printStackTrace(); }
