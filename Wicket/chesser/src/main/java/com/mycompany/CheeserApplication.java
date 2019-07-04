@@ -40,7 +40,7 @@ public class CheeserApplication extends WebApplication {
     }
 
     @Override
-    public Session newSession(Request request, Response response) {
+    public Session newSession(Request request, Response repsonse) {
         return new CheeserSession(request);
     }
     

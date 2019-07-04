@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+        </div>
+        <div class="main">            
+            <div wicket:id="cheeses" class="cheese">
+                <h3 wicket:id="name">[Cheese's Name Goes Here]</h3>
+                <p wicket:id="description">[Cheese's description goes here]</p>
+                <p>
+                    <span wicket:id="price">$1.99</span>
+                    <a wicket:id="add" href="#">Add to Cart</a>
+                </p>
+            </div>
+            <wickete:remove>
+                <div class="cheese">
+                    <h3>Elemental</h3>
+                    <p>Emmental is a Swiss</p>
+                    <p>
+                        <span>$2.99</span>
+                        <a href="#">Add to Cart</a>
+                    </p>
+                </div>
+            </wickete:remove>
+        </div>
+        <div id="cart">[.... Cart Goes Here .... ]</div>
+    </div>
+</body>
+</html>
