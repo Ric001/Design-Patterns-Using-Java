@@ -13,5 +13,20 @@ public class App
         
         System.out.println(houseBlend.getDescription() + "\nCost: " 
         + (float) houseBlend.cost());
+        
+        ITest something = (Dog dog) -> dog.getAge() == 9;
+        something.test(new Dog());
+        
     }
 }
+class Dog {
+    private int age = 9;
+
+    public int getAge() {
+        return age;
+    }
+}
+interface ITest {
+    public boolean test(Dog dog);
+}
+
