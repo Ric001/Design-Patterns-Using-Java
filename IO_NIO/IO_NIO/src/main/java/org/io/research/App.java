@@ -27,7 +27,14 @@ public class App {
     }
 
     private void sectionThree() throws Exception{
+<<<<<<< HEAD
         SectionThree.performMeta();
         SectionThree.consultingPermissionsToAFile();
+=======
+        //SectionThree.performMeta();
+        //SectionThree.basicFileAttributes();
+        //SectionThree.permissionsToAFile();
+        SectionThree.basicFileAttributeView();
+>>>>>>> 963d14e8d0c00287e6795c44400996de6343812b
     }
 }

@@ -1,11 +1,13 @@
 package com.mycompany;
 
-
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 
+import java.io.Serializable;
 import java.util.logging.Logger;
 
 public class Index extends CheeserPage {
@@ -15,13 +17,41 @@ public class Index extends CheeserPage {
     public Index() {
         add(new ListView<Chesse>("cheeses", getCheesses()) {
             private static final long serialVersionUID = 1L;
-
             @Override
             protected void populateItem(ListItem<Chesse> item) {
                 _LOG.info("[ENTERING populateItem(ListItem<Chesse> item):void]");
                 performItemsPopulation(item);
             }
+        })
+        .add(new ListView<Chesse>("cart", new PropertyModel<>(this, "cart.chesses")) {
+            private static final long serialVersionUID = 1L;
+            @Override
+            protected void populateItem(ListItem<Chesse> item) {
+                _LOG.info("[ENTERING populateItem(ListItem<Cheese> item): void]");
+                populatingCartItems(item);
+            }    
         });
+    }
+
+    private void populatingCartItems(ListItem<Chesse> item) {
+        _LOG.info("[ENTERING populateItem(List<Cheese> item): void]");
+        Chesse cheese = item.getModelObject();
+        item.add(new Label("name", cheese.getName()))
+            .add(new Label("price", cheese.getPrice()))
+            .add(new Link<Chesse>("remove", item.getModel()) {
+                private static final long serialVersionUID = 1L;
+                @Override
+                public void onClick() {
+                    removeProduct(this);
+                } })
+            /*.add(new Label("total", new Model<>(""){
+                    private static final long serialVersionUID = 1L;
+
+                    @Override
+                    public Serializable getObject() {
+                    return "";
+                }
+            }));*/
     }
 
     private void performItemsPopulation(ListItem<Chesse> item) {
@@ -30,21 +60,26 @@ public class Index extends CheeserPage {
         item.add(new Label("name", cheese.getName()))
             .add(new Label("description", cheese.getDescription()))
             .add(new Label("price", cheese.getPrice()))
-
             .add(new Link<Chesse>("add", item.getModel()) {
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            public void onClick() {
-                triggerOnClick(this);
-            }
+                private static final long serialVersionUID = 1L;
+                @Override
+                public void onClick() {
+                    triggerOnClickEvent(this);
+                }
         });
     }
 
-    private void triggerOnClick(Link<Chesse> link) {
+    private void triggerOnClickEvent(Link<Chesse> link) {
         _LOG.info("[Adding selected Chesse to the cart]");
-        Chesse selected = link.getModelObject();
-        getCart().getChesses().add(selected);
+        Chesse selectedToAdd = link.getModelObject();
+        getCart().getChesses().add(selectedToAdd);
+    }
+
+    private void removeProduct(Link<Chesse> link) {
+        _LOG.info("[ENTERING removeProduct(Link<Chesse> link): void]");
+        Chesse selectedToRemove = link.getModelObject();
+        getCart().getChesses().remove(selectedToRemove);
     }
 
 }
+

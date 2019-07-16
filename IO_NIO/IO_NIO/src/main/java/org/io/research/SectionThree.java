@@ -10,15 +10,17 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributeView;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-
+import java.util.logging.Logger;
 public class SectionThree {
-
+    private static final Logger LOG = Logger.getLogger(SectionThree.class.getName());
     public static void performMeta() throws IOException {
         //I/O way to set the last time that file was modified
         ZonedDateTime janFirstDateTime = ZonedDateTime.of(LocalDate.of(2017, 1, 1),
@@ -45,6 +47,7 @@ public class SectionThree {
         Files.delete(path);
     }
 
+<<<<<<< HEAD
     public static void consultingPermissionsToAFile() {
         Path dir = Paths.get("temp/permissions/");
         Path path = Paths.get("permission.txt");
@@ -57,5 +60,51 @@ public class SectionThree {
         } catch (IOException e) {
             e.printStackTrace();
         } 
+=======
+    public static void permissionsToAFile()throws IOException {
+        LOG.info("[ENTERING permissionsToAFile(): void throws IOException]");
+        Path dir = Paths.get("temp/permissions");
+        Path file = Paths.get("permissions.txt");
+        
+        
+        Files.createDirectory(dir);
+        file = dir.resolve(file);
+        Files.createFile(file);
+        Files.deleteIfExists(file);
+        Files.deleteIfExists(dir);
+        System.out.println(Files.isExecutable(file));
+        System.out.println(Files.isReadable(file));
+        System.out.println(Files.isWritable(file));
+    }
+
+    public static void basicFileAttributes() throws IOException {
+        LOG.info("[ENTERING basicFileAttributes(): void]");
+        Path songsListDir = Paths.get("hunger/songs");
+        Files.createDirectories(songsListDir);
+        BasicFileAttributes basicFileAttributes = Files.readAttributes(songsListDir, BasicFileAttributes.class);
+        System.out.println("Last Modified Time: " + basicFileAttributes.lastModifiedTime());
+        System.out.println("Is Directory: " + basicFileAttributes.isDirectory());
+        System.out.println("Last Access: " + basicFileAttributes.lastAccessTime());
+        System.out.println("Creation Date: " + basicFileAttributes.creationTime());
+    }
+
+    public static void basicFileAttributeView() throws IOException {
+        LOG.info("[ENTERING basicFileAttributeView(): void throws IOException]");
+        Path testDir = Paths.get("expertise");
+        Path testFile = Paths.get("silence.txt");
+        testFile = testDir.resolve(testFile);  
+        Files.deleteIfExists(testFile);
+        Files.deleteIfExists(testDir); 
+        Files.createDirectory(testDir);
+        Files.createFile(testFile);
+
+        BasicFileAttributes basic = Files.readAttributes(testFile, BasicFileAttributes.class);
+        FileTime created = basic.creationTime();
+        FileTime lastModified = basic.lastModifiedTime();
+        FileTime recentUpdate = FileTime.fromMillis(System.currentTimeMillis());
+
+        BasicFileAttributeView attributesUpdater = Files.getFileAttributeView(testFile, BasicFileAttributeView.class);
+        attributesUpdater.setTimes(lastModified, recentUpdate, created);
+>>>>>>> 963d14e8d0c00287e6795c44400996de6343812b
     }
 }
