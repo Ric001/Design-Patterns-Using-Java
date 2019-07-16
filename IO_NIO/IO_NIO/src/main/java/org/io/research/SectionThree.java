@@ -26,7 +26,9 @@ public class SectionThree {
 
         Instant januaryFirst = janFirstDateTime.toInstant();
         
-        File file = new File("C:/temp/file");
+        File file = new File("C:/temp/file.txt");
+        File dir = new File("C:/temp/");
+        dir.mkdir();
         file.createNewFile();
         file.setLastModified(
             januaryFirst.getEpochSecond() * 1000 
@@ -43,10 +45,17 @@ public class SectionThree {
         Files.delete(path);
     }
 
-    public static void permissionsToAFile() {
-        Path path = Paths.get("temp/permissions", "permissions.txt");
-        System.out.println(Files.isExecutable(path));
-        System.out.println(Files.isReadable(path));
-        System.out.println(Files.isWritable(path));
+    public static void consultingPermissionsToAFile() {
+        Path dir = Paths.get("temp/permissions/");
+        Path path = Paths.get("permission.txt");
+        try {
+            Files.createDirectory(dir);
+            Files.createFile(path.resolve(dir));
+            System.out.println("Path isReadable: " + Files.isReadable(path));
+            System.out.println("Path isWritable: " + Files.isWritable(path));
+            System.out.println("Path isExecutable: " + Files.isExecutable(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
     }
 }

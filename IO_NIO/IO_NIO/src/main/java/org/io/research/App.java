@@ -28,5 +28,6 @@ public class App {
 
     private void sectionThree() throws Exception{
         SectionThree.performMeta();
+        SectionThree.consultingPermissionsToAFile();
     }
 }
