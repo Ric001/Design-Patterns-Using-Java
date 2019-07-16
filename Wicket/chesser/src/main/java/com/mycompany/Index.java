@@ -43,7 +43,7 @@ public class Index extends CheeserPage {
                 @Override
                 public void onClick() {
                     removeProduct(this);
-                } })
+                } });
             /*.add(new Label("total", new Model<>(""){
                     private static final long serialVersionUID = 1L;
 
