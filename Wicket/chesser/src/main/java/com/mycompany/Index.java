@@ -4,6 +4,8 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.list.PageableListView;
+import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 
@@ -15,7 +17,7 @@ public class Index extends CheeserPage {
     private static final Logger _LOG = Logger.getLogger(Index.class.getName());
 
     public Index() {
-        add(new ListView<Chesse>("cheeses", getCheesses()) {
+        add(new PageableListView<Chesse>("cheeses", getCheesses(), 2) {
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -50,7 +52,7 @@ public class Index extends CheeserPage {
             public String getObject() {
                 return "$" + (float) getCart().getTotal();
             }
-        }));
+        })).add(new PagingNavigator("navigator", (PageableListView<Chesse>) get("cheeses")));
     }
 
     private void populatingCartItems(ListItem<Chesse> item) {
