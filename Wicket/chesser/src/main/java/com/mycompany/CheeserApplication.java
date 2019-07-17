@@ -14,7 +14,7 @@ import org.apache.wicket.request.Response;
 public class CheeserApplication extends WebApplication {
 
     private List<Chesse> cheesses = Arrays.asList(
-        new Chesse("GOUDA", "Gouda is a yellowish ducth[.....]", 10.5F),
+        new Chesse("CHEDAR", "CHEDAR is an italian[.....]", 10.5F),
         new Chesse("GOUDA", "Gouda is a yellowish ducth[.....]", 10.5F),
         new Chesse("GOUDA", "Gouda is a yellowish ducth[.....]", 10.5F),
         new Chesse("GOUDA", "Gouda is a yellowish ducth[.....]", 10.5F),
