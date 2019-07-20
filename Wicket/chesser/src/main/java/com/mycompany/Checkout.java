@@ -1,5 +1,7 @@
 package com.mycompany;
 
+import java.util.logging.Logger;
+
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
@@ -9,7 +11,8 @@ import org.apache.wicket.model.PropertyModel;
 public class Checkout extends CheeserPage {
 
     private static final long serialVersionUID = 1L;
-
+    private final static Logger LOG = Logger.getLogger(Checkout.class.getName());
+    
     public Checkout() {
         Form<Address> form = new Form<>("form");
         Address address = getCart().getBillingAddress();
@@ -23,6 +26,7 @@ public class Checkout extends CheeserPage {
                 private static final long serialVersionUID = 1L;
                 @Override
                 public void onClick() {
+                    LOG.info("[CANCELING Checkout Order]");
                     setResponsePage(Index.class);    
                 }
             });
@@ -31,6 +35,7 @@ public class Checkout extends CheeserPage {
                 @Override
                 public void onSubmit() {
                     getCart().getChesses().clear();
+                    LOG.info("[Chesses Cart Cleared -> ] " + getCart().getChesses().size());
                     setResponsePage(Index.class);
                 }
             });

@@ -9,7 +9,6 @@ import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 
-import java.io.Serializable;
 import java.util.logging.Logger;
 
 public class Index extends CheeserPage {
@@ -44,7 +43,6 @@ public class Index extends CheeserPage {
             public boolean isVisible() {
                 return !getCart().getChesses().isEmpty();
             }
-
         }).add(new Label("total", new Model<String>() {
             private static final long serialVersionUID = 1L;
 
@@ -52,7 +50,7 @@ public class Index extends CheeserPage {
             public String getObject() {
                 return "$" + (float) getCart().getTotal();
             }
-        })).add(new PagingNavigator("navigator", (PageableListView<Chesse>) get("cheeses")));
+        })).add(new PagingNavigator("navigator",(PageableListView<Chesse>) get("cheeses")));
     }
 
     private void populatingCartItems(ListItem<Chesse> item) {
