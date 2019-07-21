@@ -32,4 +32,8 @@ public class Cart implements Serializable {
             total += cheese.getPrice();
         return total;
     }
+
+    public void clearAmount() {
+        total = 0;
+    }
 }
