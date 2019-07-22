@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <wicket:panel>
+        <h3>Your Selection</h3>
+        <table>
+            <tr wicket:id="cart">
+                <td wicket:id="name">[PRODUCT NAME GOES HERE]</td>
+                <td wicket:id="price">[PRODUCT PRICE GOES HERE]</td>
+                <td><a wicket:id="remove">Remove</a></td>
+            </tr>
+            <tr>
+                <td>Total: <p wicket:id="total">[TOTAL COST GOES HERE]</p></td>
+            </tr>
+        </table>
+    </wicket:panel>
+</body>
+</html>

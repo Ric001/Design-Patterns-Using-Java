@@ -23,7 +23,6 @@ public class Checkout extends CheeserPage {
             .add(new TextField<String>("street", new PropertyModel<>(address,"street")).setRequired(true))
             .add(new TextField<>("zipcode", new PropertyModel<>(address, "zipcode")).setRequired(true))
             .add(new TextField<>("city", new PropertyModel<>(address, "city")).setRequired(true))
-
             .add(new Link<Void>("cancel") {
                 private static final long serialVersionUID = 1L;
                 @Override

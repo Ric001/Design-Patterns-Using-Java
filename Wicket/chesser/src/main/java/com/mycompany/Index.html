@@ -24,46 +24,15 @@
                     </p>
                 </div>
                 <div wicket:id="navigator"></div>
-                <wicket:remove>
-                    <div class="cheese">
-                        <h3>Elemental</h3>
-                        <p>Emmental is a Swiss</p>
-                        <p>
-                            <span>$2.99</span>
-                            <a href="#">Add to Cart</a>
-                        </p>
-                    </div>
-                </wicket:remove>
-            </div>
-            <div class="cart">
-                <h3>Your selection</h3>
-                <table>
-                    <tbody>
-                        <tr wicket:id="cart">
-                            <td wicket:id="name">[NAME GOES HERE]</td>
-                            <td wicket:id="price">[PRICE GOES HERE]</td>
-                            <td><a href="#" wicket:id="remove">remove</a></td>
-                        </tr>
-                        <wicket:remove>
-                            <tr>
-                                <td>Emmental</td>
-                                <td>$1.99</td>
-                                <td><a href="#">remove</a></td>
-                            </tr>
-                        </wicket:remove>
-                    </tbody>
-                    <tfoot>
-                        <tr class="total">
-                            <th>Total</th>
-                            <td wicket:id="total">$1.99</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                    </tfoot>
-                </table>
+
+                <div id="cart">
+                    <div wicket:id="shopping-cart-panel">[Shopping Cart Panel Goes Here]</div>
+                </div>
+            </div> 
                 <input type="button" value="Check out" wicket:id="checkout">
             </div>
         </div>
-    </div>
+
 </body>
 
 </html>

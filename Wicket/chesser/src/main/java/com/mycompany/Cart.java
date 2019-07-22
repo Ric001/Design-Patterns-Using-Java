@@ -1,6 +1,7 @@
 package com.mycompany;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.ArrayList;
 import java.io.Serializable;
 
@@ -35,5 +36,10 @@ public class Cart implements Serializable {
 
     public void clearAmount() {
         total = 0;
+    }
+
+    public float recalculateTotal(double removingPrice) {
+        total = total - removingPrice;
+        return (float) total;
     }
 }
