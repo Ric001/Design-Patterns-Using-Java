@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Proof",
+            "request": "launch",
+            "mainClass": "com.paquete.Proof"
+        }
+    ]
+}

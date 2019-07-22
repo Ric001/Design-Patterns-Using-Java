@@ -1,5 +1,6 @@
 package com.mycompany;
 
+import java.text.NumberFormat;
 import java.util.Objects;
 import java.util.logging.Logger;
 
@@ -28,17 +29,7 @@ public class ShoppingCartPanel extends Panel {
                 if (Objects.nonNull(chesse)) {
                     item.add(new Label("name", chesse.getName()));
                     item.add(new Label("price", chesse.getPrice()));
-                    item.add(new Link<Chesse>("remove") {
-                        private static final long serialVersionUID = 1L;
-
-                        @Override
-                        public void onClick() {
-                            LOG.info("Recalculating cart amount");
-                            double priceToSustract = chesse.getPrice();
-                            //getCart().getChesses().remove(ndex);
-                            getCart().recalculateTotal(priceToSustract);
-                        }
-                    });
+                    item.add(removeLink("remove", item));
                 }
             }
         });
@@ -47,7 +38,8 @@ public class ShoppingCartPanel extends Panel {
             private static final long serialVersionUID = 1L;
             @Override
             public String getObject() {
-                return "$" + (float) getCart().getTotal();
+                NumberFormat nf = NumberFormat.getCurrencyInstance();
+                return nf.format(getCart().getTotal());
             }
         }));
     }
