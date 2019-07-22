@@ -9,6 +9,10 @@ import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 public class Index extends CheeserPage {
@@ -65,7 +69,7 @@ public class Index extends CheeserPage {
                         removeProduct(this);
                     }
                 });
-
+                Supplier<ArrayList<String>> arrayList = Collections::sort;
     }
 
     private void performItemsPopulation(ListItem<Chesse> item) {
