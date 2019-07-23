@@ -36,6 +36,7 @@ public class SimplePizzaFactory {
             return null;
 
         pizza.prepare().cook().slice().pack();
+        gottenPizas.add(pizza);
         return pizza;
     }
 
