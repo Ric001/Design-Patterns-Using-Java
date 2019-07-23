@@ -1,20 +1,19 @@
 package com.factory.app.model;
-import com.factory.app.model.enums.EPizzaTypes;
+
+
 public abstract class Pizza {
     
-    protected String name;
-    protected float price;
-    protected EPizzaTypes type;
+    protected PizzaDescription description;
     protected boolean prepared;
     protected boolean cooked;
     protected boolean sliced;
     protected boolean packaged;
 
-    public Pizza(String name, float price, EPizzaTypes type) {
-        this.name = name;
-        this.price = price;
-        this.type = type;
+    public Pizza(PizzaDescription description) {
+        this.description = description;
     }
+
+    public Pizza() {}
 
     public boolean isPrepared() {
         return prepared;
@@ -32,27 +31,40 @@ public abstract class Pizza {
         return packaged;
     }
 
-    public String getName() {
-        return name;
+    public Pizza prepare() {
+        prepared = true;
+        return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Pizza cook() {
+        cooked = true;
+        return this;
     }
 
-    public float getPrice() {
-        return price;
+    public Pizza slice() {
+        sliced = true;
+        return this;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public Pizza pack() {
+        packaged = true;
+        return this;
     }
 
-    public EPizzaTypes getType() {
-        return type;
+    public PizzaDescription getDescription() {
+        return description;
     }
 
-    public void setType(EPizzaTypes type) {
-        this.type = type;
+    public Pizza setDescription(PizzaDescription description) {
+        this.description = description;
+        return this;
     }
+
+    @Override
+    public String toString() {
+        return "Pizza [cooked=" + cooked + ", description=" + description + ", packaged=" + packaged + ", prepared="
+                + prepared + ", sliced=" + sliced + "]";
+    }
+
+    
 }
