@@ -15,7 +15,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        
         supplyLocalDate();
         supplyStringBuilders();
         consumePrintln();
@@ -44,7 +43,6 @@ public class App
         
         c1.accept("value");
         c2.accept("valueII");
-
     }
 
     private static void biConsume() {
@@ -55,7 +53,6 @@ public class App
         biconsumerMap.accept("Hello", "Hello");
         biconsumerMap.accept("Cant stop", "The feeling");
         
-
         System.out.println(map);
     }
 }
