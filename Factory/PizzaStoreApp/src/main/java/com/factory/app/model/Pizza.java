@@ -1,19 +1,22 @@
 package com.factory.app.model;
 
+import static java.util.Objects.isNull;
 
 public abstract class Pizza {
-    
+
     protected PizzaDescription description;
     protected boolean prepared;
     protected boolean cooked;
     protected boolean sliced;
     protected boolean packaged;
+    protected int pizzaID;
 
     public Pizza(PizzaDescription description) {
         this.description = description;
     }
 
-    public Pizza() {}
+    public Pizza() {
+    }
 
     public boolean isPrepared() {
         return prepared;
@@ -61,10 +64,28 @@ public abstract class Pizza {
     }
 
     @Override
-    public String toString() {
-        return "Pizza [cooked=" + cooked + ", description=" + description + ", packaged=" + packaged + ", prepared="
-                + prepared + ", sliced=" + sliced + "]";
+    public boolean equals(Object incomingPizza) {
+        if (isNull(incomingPizza)) 
+            return false;
+        
+        if (incomingPizza instanceof Pizza) 
+            return ((Pizza) incomingPizza).getPizzaID() == pizzaID;
+
+        return false;
     }
 
-    
+    public int getPizzaID() {
+        return pizzaID;
+    }
+
+    public void setPizzaID(int pizzaID) {
+        this.pizzaID = pizzaID;
+    }
+
+    @Override
+    public String toString() {
+        return "Pizza [cooked=" + cooked + ", description=" + description + ", packaged=" + packaged + ", pizzaID="
+                + pizzaID + ", prepared=" + prepared + ", sliced=" + sliced + "]";
+    }
+
 }
