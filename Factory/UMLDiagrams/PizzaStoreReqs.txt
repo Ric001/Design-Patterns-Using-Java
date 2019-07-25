@@ -1,0 +1,9 @@
+Se require una aplicacion que maneje pizza stores de manera regional, entendiendo que cada 
+region tiene su propio tipo de tienda, tipo de pizza.
+
+Entidades a manejar: 
+    .pizza (Exiten ciertos tipos de pizza segun la region)
+    .pizzastore
+    .NyPizzastore
+    .ChicacoPizzaStore
+
