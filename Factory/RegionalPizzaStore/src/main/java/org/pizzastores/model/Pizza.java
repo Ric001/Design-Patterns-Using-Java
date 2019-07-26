@@ -35,8 +35,8 @@ public abstract class Pizza {
 
     @Override
     public String toString() {
-        return "Pizza [baked=" + baked + ", boxed=" + boxed + ", description=" + description + ", prepared=" + prepared
-                + ", sliced=" + sliced + ", type=" + type + "]";
+        return "'Pizza': {baked:" + baked + ", boxed:" + boxed + ", description:" + description + ", prepared:" + prepared
+                + ", sliced:" + sliced + ", type:" + type + "}";
     }
 
     
