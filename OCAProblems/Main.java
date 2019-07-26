@@ -15,7 +15,7 @@ public class Main {
      * System.out.println(floatNombre); //main(args); }
      */
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         // System.out.println(nombre);
         // System.out.println(floatNombre);
         // main(args);
@@ -27,7 +27,7 @@ public class Main {
          * 10002.449F; // Default decimal treatment is Double. Use F to tell the
          * compiler that this hava to be treated as a /**floating point value double
          * dAverage = 120.1762D; // Default double treatment is Double D is redundant
-         */
+         *
         // Hascode test
         Product product = new Product("JABON", "200", 1);
         Product product2 = new Product("HP", "200",1 );
@@ -36,6 +36,14 @@ public class Main {
         System.out.println("HASCODE1: " + product.hashCode() + "\n HASCODE2: " + product2.hashCode());
         new Main().testEnums();
 
+    }*/
+
+    public static void main(String[] args) {
+        char c2 = 122;
+        char c3 = '\u0122';
+        //enforcing negative char value
+        char c4 = (char) -122;
+        System.out.println(c2 + "\n" + c3 + "\n" + c4);
     }
 
     protected static void main(String[] args, String another) {
