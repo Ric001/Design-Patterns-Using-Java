@@ -1,6 +1,7 @@
 package org.pizzastores.model;
 
 public abstract class Pizza {
+    
     protected PizzaDescription description;
     protected String type;
     protected boolean baked;
@@ -37,8 +38,5 @@ public abstract class Pizza {
     public String toString() {
         return "'Pizza': {baked:" + baked + ", boxed:" + boxed + ", description:" + description + ", prepared:" + prepared
                 + ", sliced:" + sliced + ", type:" + type + "}";
-    }
-
-    
-    
+    } 
 }

@@ -18,6 +18,6 @@ public class App
     }
 
     public void testPizzaStore(PizzaStore store, String type) {
-        System.out.println(store.orderPizza(type).toString());
+        System.out.println(store.orderPizza(type));
     }
 }
