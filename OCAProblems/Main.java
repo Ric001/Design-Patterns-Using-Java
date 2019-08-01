@@ -42,8 +42,36 @@ public class Main {
         char c2 = 122;
         char c3 = '\u0122';
         //enforcing negative char value
-        char c4 = (char) -122;
-        System.out.println(c2 + "\n" + c3 + "\n" + c4);
+        //char c4 = (char) -122;
+        //System.out.println(c2 + "\n" + c3 + "\n" + c4);
+        
+        testUnaryOperators();
+
+        new Main().testEqualityOp();
+        
+    }
+
+    private static void testUnaryOperators() {
+        int a = 50;
+        int b = 10;
+        int c = a - ++b;
+        System.out.println(c);
+        System.out.println(b);
+        
+        double i1 = -20.8;
+        char ai = 'a';
+        System.out.println(i1 == ai);
+    }
+
+    private void testEqualityOp() {
+        int a = 10;
+        int b = 20;
+        System.out.println(a = b); // Not an Equality comparison
+        boolean ba = true;
+        /***Still not an equality comparison */
+        System.out.println(ba = false);
+        System.out.println(ba = true);
+
     }
 
     protected static void main(String[] args, String another) {
