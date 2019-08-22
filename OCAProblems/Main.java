@@ -39,11 +39,7 @@ public class Main {
     }*/
 
     public static void main(String[] args) {
-        char c2 = 122;
-        char c3 = '\u0122';
-        //enforcing negative char value
-        char c4 = (char) -122;
-        System.out.println(c2 + "\n" + c3 + "\n" + c4);
+        new Main().calcAverage(new int[]{ 1, 2, 3});
     }
 
     protected static void main(String[] args, String another) {
@@ -72,6 +68,7 @@ public class Main {
                 break;
             case HECHIZO:
                 Songs.HECHIZO.printSelected();
+                break;
             default:
                 System.out.println("UNSUPPORTED SONG TYPE");
         }
@@ -87,7 +84,30 @@ public class Main {
         conjury2.printConjury();
     }
 
+
+    double calcAverage(int[] marks) {
+        double actualValue = 0.0;
+        
+        for (int val : marks) 
+            actualValue += val / 1.0;
+        
+        return actualValue;
+    }
+
+    double calcAverage(int marks) {
+        return marks;
+    }
+
+    int calcEngine(int num1, double num2) {
+        return num1 + num2;
+    }
+
+    int calcEngine(double num2, int num1) {
+        return num2 + num1;
+    }
+
 }
+
 
 class Product {
     
