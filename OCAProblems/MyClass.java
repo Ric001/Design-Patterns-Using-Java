@@ -42,10 +42,10 @@ public class MyClass {
         connectionToOpenWeatherAPI.setRequestMethod("GET");
         connectionToOpenWeatherAPI.setRequestProperty("Content-Type", "application/json; utf-8");
         connectionToOpenWeatherAPI.setDoOutput(true);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connectionToOpenWeatherAPI.getInputStream()));
-            String line = "";
-            while((line = reader.readLine()) != null) 
-                System.out.println(line);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connectionToOpenWeatherAPI.getInputStream()));
+        String line = "";
+        while((line = reader.readLine()) != null) 
+            System.out.println(line);
         } catch(Exception e) { e.printStackTrace(); }
 
         // phone.weight = -2000;  This is an example of a poor implementation
