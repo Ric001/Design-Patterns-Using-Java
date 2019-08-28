@@ -12,7 +12,7 @@ public class NYPizzaFactory implements AbstractPizzaFactoryMethod {
 
     @Override
     public Pizza createPizza(String type) {
-        
+
         if (Objects.isNull(type))
             return null;
         if (type.isEmpty())
@@ -23,20 +23,20 @@ public class NYPizzaFactory implements AbstractPizzaFactoryMethod {
 
     private Pizza validatePizzaType(NYPizzas convertedToEnum) {
         final float price = (float) Math.random() * 10;
-        final int id = (int) Math.random() * 100; 
-        
-        switch(convertedToEnum) {
-            case NY_CHESSY:
-                return new Chessy(new PizzaDescription(id, convertedToEnum.name(), price), convertedToEnum.getType())
-                .prepare().bake().slice().box();
-             case NY_PEPERONI:
-                return new Peperoni(new PizzaDescription(id, convertedToEnum.name(), price), convertedToEnum.getType())
-                .prepare().bake().slice().box();
-            case NY_VEGGIE:
-                return new Veggie(new PizzaDescription(id, convertedToEnum.name(), price), convertedToEnum.getType())
+        final int id = (int) Math.random() * 100;
+
+        switch (convertedToEnum) {
+        case NY_CHESSY:
+            return new Chessy(new PizzaDescription(id, convertedToEnum.name(), price), convertedToEnum.getType())
                     .prepare().bake().slice().box();
-            default:
-                return null;
+        case NY_PEPERONI:
+            return new Peperoni(new PizzaDescription(id, convertedToEnum.name(), price), convertedToEnum.getType())
+                    .prepare().bake().slice().box();
+        case NY_VEGGIE:
+            return new Veggie(new PizzaDescription(id, convertedToEnum.name(), price), convertedToEnum.getType())
+                    .prepare().bake().slice().box();
+        default:
+            return null;
         }
     }
 
