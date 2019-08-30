@@ -25,6 +25,7 @@ public class RedirectRequestTarget implements IRequestHandler {
         RequestCycle requestCycle = (RequestCycle) iRequestCycle;
         Response response = requestCycle.getResponse();
         response.reset();
+        response.getContainerResponse().toString();
         //requestCycle.get().setRequestTarget
     }
 
