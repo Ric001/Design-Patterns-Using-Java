@@ -13,9 +13,12 @@ public class Address implements Serializable {
     private final static Logger LOG = Logger.getLogger(Address.class.getName());
 
     public Address(String street, String placeNumber, String country, String city) {
-        LOG.info("[CREATING Address(street, placeNumber, country, city)]");
-        this.setStreet(street);
+        this(street, country, city);
         this.placeNumber = placeNumber;
+    }
+
+    public Address(String street, String country, String city) {
+        this.street = street;
         this.country = country;
         this.city = city;
     }
