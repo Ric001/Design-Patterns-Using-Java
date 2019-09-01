@@ -6,56 +6,20 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import java.util.logging.Logger;
+
 import sun.launcher.resources.launcher;
 
 public class MyClass {
 
     public static void main(String[] args) {
-        
-        Person personI = new Person();
-        Person personII = new Person();
-        personI.setName("Control");
-        personII.setName("CALL U");
-        
-        ArrayList<Employee> persons = new ArrayList<>();
-        Employee employeeII = new Employee();
-        String name = "Malik";
-        persons.add(employeeII);
-        persons.add(new Employee());
-        persons.add(null);
-        persons.forEach((employee) -> {
-            if (Objects.nonNull(employee)) {
-                System.out.println(employee.daysOffWork(1, 2, 3, 5));
-                employee.setName(name);
-                System.out.println(employee);
-            }
-        });
-
-
-        Phone phone = new Phone();
-        
-        
-        try {
-            URL urlConnection = new URL("https://goodreadsraygorodskijv1.p.rapidapi.com/GetlistopiasByBookId");
-
-        HttpURLConnection connectionToOpenWeatherAPI = (HttpURLConnection) urlConnection.openConnection();
-        connectionToOpenWeatherAPI.setRequestMethod("GET");
-        connectionToOpenWeatherAPI.setRequestProperty("Content-Type", "application/json; utf-8");
-        connectionToOpenWeatherAPI.setDoOutput(true);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(connectionToOpenWeatherAPI.getInputStream()));
-        String line = "";
-        while((line = reader.readLine()) != null) 
-            System.out.println(line);
-        } catch(Exception e) { e.printStackTrace(); }
-
-        // phone.weight = -2000;  This is an example of a poor implementation
-        System.out.println(phone.getCompany());
-       // new Calc().calcAverage(20, 29);
+        new StringTests().test();
+        new StringTests().test2();
     }
+
 }
 
 class Calc {
-
     // Return type is not part of the method signature
     double calcAverage(double marks1, int marks2) {
         return (marks1 + marks2) / 2.0;
@@ -200,4 +164,55 @@ class Phone {
     }
 
     
+}
+
+class StringTests {
+    
+    private final static Logger LOG = Logger.getLogger(StringTests.class.getName());
+
+    public void test() {
+        LOG.info("[ENTERING test(): void]");
+        String jhon = new String("Jhon");
+        String Jhon = new String("Jhon");
+
+        String Harry = "Harry";
+        String harry = "Harry";
+        if (Harry == harry)
+            LOG.info("[HARRY == HARRY]");
+        else
+            LOG.info("[HARRY != Harry]");
+        
+        if (jhon == Jhon)
+            LOG.info("[Jhon == Jhon]");
+        else 
+            LOG.info("[Jhon != Jhon]");
+    }
+
+    public void test2() {
+        LOG.info("[ENTERING test2(): void]");
+
+        final StringBuilder builder = new StringBuilder("Dark Necesseties");
+        final StringBuffer buffer = new StringBuffer("TURURURURURURURUR");
+        
+        final String sBuilder = new String(builder);
+        final String sBuffer = new String(buffer);
+        
+        System.out.println(sBuilder);
+        System.out.println(sBuffer);
+        char[] chain = new char[]{ 'c','h','a','i','n' };
+        final String chainS = new String(chain);
+        System.out.println(chainS);
+
+        final String letters = "ABCD";
+        final int NOT_EXISTS = -1;
+        
+        if (letters.indexOf(str) == NOT_EXISTS)
+            System.out.println(letters.indexOf('S'));
+
+        System.out.println(letters.indexOf('A'));
+        System.out.println(letters.indexOf('C'));
+
+        LOG.info("[ENDING test2(): void]");
+    }
+
 }
