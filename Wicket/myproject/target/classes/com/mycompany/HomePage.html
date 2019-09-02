@@ -7,28 +7,22 @@
 		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
 	</head>
 	<body>
-		<div><!--
-			<div id="customer">
-				<h1>Customer Info: </h1>
-				<p wicket:id="customer-name">[ Customer Name goes here ]</p>
-				<p wicket:id="customer-lastname">[Customers lastname goes here ]</p>
-				<p wicket:id="customer-age">[Customers age goes here]</p>
-			</div>
-			<div id="product">
-				<h2>Product Info: </h2>
-				<p wicket:id="product-name">[ Product name goes here ]</p>
-				<p wicket:id="product-price">[ Product name goes here ]</p>
-			</div>
-			<div id="address">
-				<h1>Address Info: </h1>
-				<p wicket:id="street">[ Street name goes here ]</p>
-				<p wicket:id="placeNumber">[ Place Number Goes here ]</p>
-				<p wicket:id="country">[Country name goes here ]</p>
-				<p wicket:id="city">[ City goes here ]</p>
-			</div>-->
+		<div>
 			<p wicket:id="customer">[Customer Data]</p>
 			<p wicket:id="address">[Address]</p>
 			<p wicket:id="product">[Product]</p>
+
+			<form wicket:id="personal-info">
+				<input type="text" wicket:id="name">
+				<input type="text" wicket:id="lastname">
+				<input type="text" wicket:id="profession">
+			
+				<input type="text" wicket:id="street">
+				<input type="text" wicket:id="city">
+				<input type="text" wicket:id="country">
+				<input type="submit" wicket:id="send">
+			</form>
+
 		</div>
 	</body>
 </html>

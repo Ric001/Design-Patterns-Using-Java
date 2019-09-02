@@ -2,16 +2,18 @@ package com.mycompany;
 
 import java.util.logging.Logger;
 
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-public class PersonalInfo extends Form {
+public class PersonalInfo extends Form<Person> {
 
     private TextField<String> name;
     private TextField<String> lastname;
     private TextField<String> profession;
+    private Button submit;
     private AddressInfo addressInfo;
     
     private static final long serialVersionUID = 1L;
@@ -27,14 +29,15 @@ public class PersonalInfo extends Form {
     }
 
     private void initComponents() {
-        LOG.info("[ENTERING void initComponents()]");
+        LOG.info("[ ENTERING void initComponents() ]");
 
         name = new TextField<>("name");
         lastname = new TextField<>("lastname");
         profession = new TextField<>("profession");
-        addressInfo = new AddressInfo("address");
+        submit = new Button("send");
+        addressInfo = new AddressInfo("address-info");
         
-        LOG.info("[ENDING void initComponents()]");
+        LOG.info("[ ENDING void initComponents() ]");
     }
 
     private void setModels() {
@@ -48,16 +51,17 @@ public class PersonalInfo extends Form {
     }
 
     private void addInto() {
-        LOG.info("[ENTERING addInto(): void]");
+        LOG.info("[ ENTERING addInto(): void ]");
 
-        add(name).add(lastname).add(profession).add(addressInfo);
+        add(name).add(lastname).add(profession).add(submit);
+        addressInfo.compound(this);
         
-        LOG.info("[ENDING addInto(): void]");
+        LOG.info("[ ENDING addInto(): void ]");
     }
 
     @Override
     public void onSubmit() {
-        LOG.info("[Submiting Personal Content ]");
+        LOG.info("[ Submiting Personal Content ]");
         
         final String name = this.name.getValue();
         final String lastname = this.lastname.getValue();

@@ -2,13 +2,14 @@ package com.mycompany;
 
 import java.util.logging.Logger;
 
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 
-public class AddressInfo extends Form {
+public class AddressInfo extends Form<Address> {
 
     private TextField<String> street;
     private TextField<String> city;
@@ -54,6 +55,14 @@ public class AddressInfo extends Form {
         LOG.info("[ENDING addInto(): void]");
     }
 
+    public void compound(WebMarkupContainer container) {
+        LOG.info("[ENTERING compound(WebMarkupContainer container)]");
+
+        container.add(street).add(city).add(country);
+        
+        LOG.info("[RETURNING compound(WebMarkupContainer container)]");
+    }
+
     public IModel<Address> address() {
         final String street = this.street.getValue();
         final String city = this.city.getValue();
@@ -61,7 +70,7 @@ public class AddressInfo extends Form {
         
         Address address = new Address(street, city, country);
         setDefaultModel(new Model<>(address));
-        return (IModle<Address>) getDefaultModel();
+        return (IModel<Address>) getDefaultModel();
     }
 
 	

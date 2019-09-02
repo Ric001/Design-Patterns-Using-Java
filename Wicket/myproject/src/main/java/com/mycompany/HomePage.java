@@ -25,9 +25,14 @@ public class HomePage extends WebPage {
 	private static final transient Logger LOG = Logger.getLogger(HomePage.class.getName());
 	
 	public HomePage(final PageParameters parameters) {
+		LOG.info("[ENTERING HomePage(final PageParameters parameters)]");
+
 		this.add(new Label("customer", getCustomer()))
 			.add(new Label("address", getAddress()))
-			.add(new Label("product", getProduct()));
+			.add(new Label("product", getProduct()))
+			.add(new PersonalInfo("personal-info"));
+			
+		LOG.info("[ENDING HomePage(final PageParameter parameters)]");	
 	}
 
 	public Model<Address> getAddress() {
