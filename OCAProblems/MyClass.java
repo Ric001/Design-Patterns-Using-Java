@@ -13,8 +13,7 @@ import sun.launcher.resources.launcher;
 public class MyClass {
 
     public static void main(String[] args) {
-        new StringTests().test();
-        new StringTests().test2();
+        new StringTests().chaining();
     }
 
 }
@@ -205,9 +204,9 @@ class StringTests {
 
         final String letters = "ABCD";
         final int NOT_EXISTS = -1;
-        
+        final char str = 'h';
         if (letters.indexOf(str) == NOT_EXISTS)
-            System.out.println(letters.indexOf('S'));
+            System.out.println(letters.indexOf('D'));
 
         System.out.println(letters.indexOf('A'));
         System.out.println(letters.indexOf('C'));
@@ -215,4 +214,64 @@ class StringTests {
         LOG.info("[ENDING test2(): void]");
     }
 
+    public void test3() {
+        
+        final String name = "Paul";
+        System.out.println(name.charAt(0));
+        System.out.println(name.charAt(2));
+
+        final String letters = "ABCAB";
+        System.out.println(letters.indexOf("B",2));
+    }
+
+    public void substring() {
+        final String exam = "Oracle";
+        final String sub = exam.substring(2, 4);
+        System.out.println(sub);
+    }
+
+    public void trim() {
+        //Remove the leading and traling space of a string, but not the space within
+        final String varWithSpace = " AB CB  ";
+        System.out.print(":");
+        System.out.print(varWithSpace);
+        System.out.print(":");
+
+        final String varWithoutSpace = varWithSpace.trim();
+        System.out.print(":");
+        System.out.print(varWithoutSpace);
+        System.out.print(":");
+    }
+
+    public void replace() {
+        final String letters = "ABCAB";
+        System.out.println(letters.replace('B', 'b'));
+        System.out.println(letters.replace("CA", "12"));
+    }
+
+    public void len() {
+        final String letters = "ABCAB";
+        System.out.println("Letters Len: " + letters.length());
+    }
+
+    public void starts() {
+        final String letters = "ABCAB";
+        System.out.println(letters.startsWith("A"));
+        System.out.println(letters.startsWith("AB"));
+        System.out.println(letters.startsWith("A", 3));
+    }
+
+    public void ends() {
+        final String letters = "ABCAB";
+        
+        System.out.println(letters.endsWith("CAB"));
+        System.out.println(letters.endsWith("B"));
+        System.out.println(letters.endsWith("b"));
+    }
+
+    public void chaining() {
+        final String result = "Sunday ".replace(' ', 'Z').trim().concat("M n");
+        
+        System.out.println(result);
+    }
 }
