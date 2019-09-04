@@ -5,6 +5,8 @@ import org.apache.wicket.model.PropertyModel;
 
 import java.util.logging.Logger;
 
+import com.mycompany.models.Person;
+
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -26,8 +28,6 @@ public class PersonalInfo extends Form<Person> {
         setModels();
         addInto();
     }
-
-   
 
     private void initComponents() {
         LOG.info("[ENTERING initComponents(): void]");

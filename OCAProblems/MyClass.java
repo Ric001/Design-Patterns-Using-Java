@@ -9,14 +9,31 @@ import java.util.Objects;
 import java.util.logging.Logger;
 
 import sun.launcher.resources.launcher;
+import sun.util.logging.resources.logging;
 
 public class MyClass {
 
     public static void main(String[] args) {
-        new StringTests().chaining();
+        new StringTests().appending();
+        // final StringTests testOne = new StringTests();
+        // final StringTests testTwo = new StringTests();
+        // testOne.setVal("Natural");
+        // testTwo.setVal("Natural");
+
+        // if (testOne.match(testTwo))
+        //     System.out.println("They do Match");
+
     }
 
 }
+
+
+
+// jdbc:oracle:thin:@//172.27.5.17:1521/PCDLOL
+
+// -Doracle.net.tns_admin=C:\Users\jose osorio soto\Desktop\ff\tnsnames.ora
+
+// oracle.jdbc.timezoneAsRegion=false
 
 class Calc {
     // Return type is not part of the method signature
@@ -107,7 +124,7 @@ class Employee {
     
 }
 
-class Person {
+class PersonOwn {
     private String name;
 
     public String getName() {
@@ -270,8 +287,142 @@ class StringTests {
     }
 
     public void chaining() {
+        
         final String result = "Sunday ".replace(' ', 'Z').trim().concat("M n");
         
+        String day = "SunDday";
+        
+        day.replace('D', 'Z').substring(3);
+        System.out.println(day);
+        day = day.replace('D', 'Z').substring(3);
+        System.out.println(day);
         System.out.println(result);
+    
+    }
+
+    public void concatanating() {
+        LOG.info("[ENTERING concatanating(): void]");
+
+        final StringBuilder builder = new StringBuilder();
+        builder.append("I pounder of something great\n")
+            .append("My lungs will fill and then deflate\n")
+            .append("They fill with fire, exhale desire\n")
+            .append("I know its dire my time today\n");
+        System.out.println(builder);
+        
+        final String letters = "OCJA" + "Cert" + "Exam";
+        System.out.println(letters);
+        LOG.info("[ENDING concatanating(): void]");
+    }
+
+    private int numReceived() {
+        return 200;
+    }
+    
+    private int inTransit() {
+        return 300;
+    }
+
+    public void logToAFile() {
+        final String loggingTxt = "Logging txt: " + (numReceived() + inTransit());
+        System.out.println(loggingTxt);
+
+        String lang = "Java";
+        lang += " is everywhere!";
+        String initializedToNull = null;
+        initializedToNull += "Java";
+        System.out.println(lang);
+        System.out.println(initializedToNull);
+    }
+
+    private String val;
+    
+    public String getVal() {
+        return val;
+    }
+
+    public void setVal(String val) {
+        this.val = val;
+    }
+
+    public boolean match(Object o) {
+        if (this == o || Objects.isNull(o) || !(o instanceof StringTests))
+            return true;
+        
+        final StringTests test = (StringTests) o;
+        final String testVal = test.getVal();
+    
+        if (Objects.isNull(testVal) || !testVal.equals(val))
+            return false;
+        
+        return true;
+    }
+
+    public void compare() {
+        LOG.info("[ENTERING compare(): void]");
+        
+        final String lang1 = "Java";
+        final String lang2 = "JaScala";
+        
+        final String returnValue1 = lang1.substring(0, 1);
+        final String returnValue2 = lang2.substring(0,1);
+
+        System.out.println(returnValue1 == returnValue2);
+        System.out.println(returnValue1.equals(returnValue2));
+        
+        LOG.info("[ENDING compare(): void]");
+    }
+
+    public void building() {
+        final StringBuilder sb1 = new StringBuilder();
+        final StringBuilder sb2 = new StringBuilder(sb1);
+        final StringBuilder sb3 = new StringBuilder(50);
+        final StringBuilder sb4 = new StringBuilder("Bhrama Gupta");
+    }
+
+    private StringBuilder builder;
+    public boolean making(String line) {
+        final String lineBreak = "\n";
+
+        if (Objects.isNull(builder) && !line.isEmpty()) 
+            builder = new StringBuilder(line.length());
+
+        if (line.isEmpty())
+            return false;
+        
+        builder.append(line + lineBreak);
+    
+        return true;
+    }
+
+    public void testing() {
+        LOG.info("[ENTERING testing(): void]");
+
+        making("Im never let u go, when i never did");
+        if (builder.charAt(0) == 'I')
+            System.out.println("Theres a coincidence");
+    
+        LOG.info("[ENDING testing(): void]");
+    }
+
+    public void appending() {
+        LOG.info("[ENTERING append(): void]");
+
+        //You can add data from multiple data types to a StringBuilder
+        //Since this method is overloaded
+
+        final StringBuilder letters = new StringBuilder();
+        final PersonOwn person = new PersonOwn();
+        person.setName("The Red Hot Chili peppers");
+        letters.append("String")
+                .append('c') // char
+                .append(true) // boolean
+                .append(new char[] {'c', 'd'}) // char array
+                .apend(person) 
+                .append(20)
+                .append(29.5F)
+                .append(new StringBuilder("Many Moons"));
+
+        LOG.info("[ENDIND append(): void] -> " + letters);
     }
 }
