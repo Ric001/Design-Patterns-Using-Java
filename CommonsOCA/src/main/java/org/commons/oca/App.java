@@ -5,8 +5,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        final StringTester stringTester = new StringTester();
-        stringTester.insertTest();
-        
+        final ArrayTest test = new ArrayTest();
     }
 }

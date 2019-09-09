@@ -22,6 +22,7 @@ public class StringTester {
 
     public void delete() {
         _LOG.info("[ENTERING void delete()]");
+
         final StringBuilder sb1 = new StringBuilder("0123456");
         //Removes elements on positions between 2 and four exluding the element
         //on the 4th position
@@ -32,10 +33,40 @@ public class StringTester {
         sb1.deleteCharAt(2);
 
         System.out.println(sb1);
+
         _LOG.info("[ENDING void delete()]");
     }   
 
     public void deleteCharAt() {
+        _LOG.info("[ENTERING void deleteCharAt()]");
         
+        final StringBuilder testStringBuilder = new StringBuilder("1234567");
+        testStringBuilder.deleteCharAt(2);
+        testStringBuilder.reverse();
+        System.out.println(testStringBuilder);
+
+        _LOG.info("[ENDING deleteCharAt(): void]");
     }
+
+    public void replacing() {
+        _LOG.info("[ENTRING void replacing()]");
+        
+        final StringBuilder builder = new StringBuilder("0123456");
+        builder.replace(2, 4, "Suspect");
+        
+        _LOG.info("[ENDING void replacing()]");
+    }
+
+    public void subSequence() {
+        _LOG.info("[ENTERING void subSequence()]");
+
+        final StringBuilder mainSequence = new StringBuilder("0123456");
+        final StringBuilder subSequence = (StringBuilder) mainSequence.subSequence(2, 4);
+        System.out.println(subSequence);
+        System.out.println(mainSequence);
+
+        _LOG.info("[ENDING void subSequence()]");
+    }
+
+
 }

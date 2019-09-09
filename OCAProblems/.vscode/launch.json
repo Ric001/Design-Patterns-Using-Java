@@ -2,6 +2,24 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - CommonClasses",
+            "request": "launch",
+            "mainClass": "CommonClasses"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - StringTesting",
+            "request": "launch",
+            "mainClass": "StringTesting"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - StringTester",
+            "request": "launch",
+            "mainClass": "StringTester"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Test",
             "request": "launch",
             "mainClass": "Test"
