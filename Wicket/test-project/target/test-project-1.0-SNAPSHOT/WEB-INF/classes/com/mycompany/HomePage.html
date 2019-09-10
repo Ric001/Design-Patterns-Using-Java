@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+	<head>
+		<meta charset="utf-8" />
+		<title>Apache Wicket Quickstart</title>
+		<link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
+	</head>
+	<body>
+		<form method="POST" wicket:id="personal-info">
+			<input type="text" wicket:id="name">
+			<input type="text" wicket:id="lastname">
+			<input type="text" wicket:id="profession">
+			<input type="submit" wicket:id="send">
+		</form>
+
+		<br>
+		<br>
+		
+		<form method="POST" wicket:id="customer-info">
+			<input type="text" wicket:id="documentId" placeholder="documentId">
+			<input type="text" wicket:id="name" placeholder="name">
+			<input type="text" wicket:id="lastname" placeholder="lastname"> 
+			<input type="text" wicket:id="accountNumber" placeholder="account number">
+			<input type="text" wicket:id="street" placeholder="street">
+			<input type="text" wicket:id="address.city" placeholder="city">
+			<input type="text" wicket:id="address.country" placeholder="country">
+			<input type="submit" value="send" wicket:id="send">
+		</form>
+	</body>
+</html>
