@@ -1,6 +1,6 @@
 package com.mycompany.wrappers;
 
-import java.io.Serializable;
+
 import java.util.Objects;
 
 import com.mycompany.models.Cheese;

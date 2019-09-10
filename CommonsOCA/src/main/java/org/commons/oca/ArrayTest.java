@@ -1,6 +1,8 @@
 package org.commons.oca;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
@@ -26,7 +28,9 @@ public class ArrayTest {
 
     public void twoDimensional() {
         _LOG.info("[ENTERING twoDimensional(): void]");
+
         final int[] multiArr[] = new int[2][3];
+
         for (int row = 0; row < multiArr.length; row++)
             for(int column = 0; column < multiArr[column].length; column++)
                 multiArr[row][column] = row + column;
@@ -132,11 +136,94 @@ class Test {
     public void arrayList() {
         LOG.info("[ENTERING void arrayList()]");
         
-        final ArrayList<String> names = new ArrayList<>();
-        
+        final List<String> names = new ArrayList<>();
+        names.add("Rick");
+        names.add("Optimus");
+        names.add(1, "Prime");
+
+        for(String name: names) 
+            System.out.println(name);
         LOG.info("[ENDING void arrayList()]");
     }
 
+    public void listIterator() {
+        LOG.info("[ENTERING void listIterator()]");
+
+        final ArrayList<String> names = new ArrayList<>();
+        names.add("One");
+        names.add("Two");
+        names.add("Four");
+        names.add(2, "Three");
+
+        names.indexOf("One");
+        names.remove(names.indexOf("One"));
+        names.remove("Two");
+        names.set(1, "One and Half");
+        ListIterator<String> iterator = names.listIterator();
+        while(iterator.hasNext()) 
+            System.out.println(iterator.next());
+        
+
+        LOG.info("[ENDING void listIterator()]");
+    }
+
+    public void updateList() {
+        LOG.info("[ENTERING void updateList()]");
+
+        final ArrayList<String> strings = new ArrayList<>();
+        strings.add("One");
+        strings.set(strings.indexOf("One"), "One and a Half");
+
+        for(String string: strings)
+            System.out.println(string);
+
+        LOG.info("[ENDING void updateList()]");
+    }
+
+    public void modifyingStringBuilders() {
+        LOG.info("[ENTERING modifyingStringBuilders()]");
+        final ArrayList<StringBuilder> builders = new ArrayList<>();
+
+        builders.add(new StringBuilder("One"));
+        builders.add(new StringBuilder("Two"));
+        builders.add(new StringBuilder("Three"));
+
+        for (StringBuilder e : builders)   
+            e.append(e.length());
+
+        for (StringBuilder e : builders)
+            System.out.println(e);
+        
+        LOG.info("[ENDING modifyingStringBuilders()]");
+    }
+
+    public void deletingElements() {
+        LOG.info("[ENTERING void deletingElements()]");
+        
+        final ArrayList<StringBuilder> builders = new ArrayList<>();
+
+        StringBuilder sb1 = new StringBuilder("One");
+        StringBuilder sb2 = new StringBuilder("Two");
+        StringBuilder sb3 = new StringBuilder("Three");
+        StringBuilder sb4 = new StringBuilder("Four");
+        
+        builders.add(sb1);
+        builders.add(sb2);
+        builders.add(sb3);
+        builders.add(sb4);
+        
+        for (StringBuilder element: builders)
+            System.out.println(element);
+
+        builders.remove(sb3);
+        builders.remove(new StringBuilder("Four"));
+        System.out.println();
+
+        for (StringBuilder element: builders) 
+            System.out.println(element);
+
+        LOG.info("[ENDING void deletingElements()]");
+    }
 }
 
 
