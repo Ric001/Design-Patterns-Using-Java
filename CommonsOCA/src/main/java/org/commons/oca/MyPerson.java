@@ -8,6 +8,7 @@ public class MyPerson {
 
     private String name;
     private final static Logger _LOG = Logger.getLogger(MyPerson.class.getName());
+    private static final int ArrayList = 0;
 
     public MyPerson(String name) {
         this.name = name;
@@ -100,11 +101,39 @@ public class MyPerson {
         _LOG.info("[ ENDING void afterWinter() ]");
     }
 
+    public void cloning() {
+
+        _LOG.info("[ENTERING void cloning()]");
+
+        final List<StringBuilder> myArrList = new ArrayList<>();
+        final StringBuilder sb1 = new StringBuilder("JAN");
+        final StringBuilder sb2 = new StringBuilder("FEB");
+        myArrList.add(sb1);
+        myArrList.add(sb2);
+        myArrList.add(sb2);
+
+        final List<StringBuilder> assignedArrList = myArrList;
+        final List<StringBuilder> clonedArrList = (ArrayList<StringBuilder>) ((ArrayList<StringBuilder>) myArrList).clone();
+        System.out.println(assignedArrList == myArrList);
+        System.out.println(myArrList == clonedArrList);
+        final StringBuilder myArrVal = myArrList.get(0); 
+        final StringBuilder assignedArrVal = assignedArrList.get(0);
+        final StringBuilder clonedArrVal = clonedArrList.get(0);
+        System.out.println(myArrVal == assignedArrVal);
+        System.out.println(myArrVal == clonedArrVal); 
+
+        _LOG.info("[ENDING void cloning()]");
+    }
+
+    
+
 }
 
 class Product {
-    private String name;
     
+    private String name;
+    private final static Logger _LOG = Logger.getLogger(Product.class.getName());
+
     public Product(String name) {
         this.name = name;
     }
@@ -119,11 +148,16 @@ class Product {
 
     @Override
     public boolean equals(Object ob) {
+        _LOG.info("[ENTERING boolean equals(Object o)]");
+
         if (ob instanceof Product) {
             final Product p = (Product) ob;
             final boolean isEqual = name.equals(p.getName());
+            _LOG.info("[RETURNING boolean equals(Object o)] -> " + isEqual);
             return isEqual;
         }
+
+        _LOG.info("[RETURNING boolean equals(Object o)] -> False");
         return false;
     }
 }
