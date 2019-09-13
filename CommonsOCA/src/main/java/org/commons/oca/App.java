@@ -1,27 +1,22 @@
 package org.commons.oca;
 
-
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 public class App 
 {
-
-    private final static Logger _LOG = Logger.getLogger(App.class.getName());
     public static void main( String[] args )
     {
         final BankAccount account = new BankAccount();
-        account.accountNumber = "0000013";
+        account.accountNumber = "00023490";
         account.accountType = 4;
+        final List<BankAccount> list = new ArrayList<>();
+        list.add(account);
+        final BankAccount acct2 = new BankAccount();
+        acct2.accountNumber = "00023490";
+        acct2.accountType = 4;
+        //list.add(acct2);
+        System.out.println(list.contains(acct2));
         
-        final BankAccount sAccount = new BankAccount();
-        sAccount.accountNumber = "1112223344";
-        sAccount.accountType = 3;
-
-        System.out.println(account.equals(sAccount));
-        System.out.println(account.equals(sAccount));
-        System.out.println(account.accountNumber.equals(new String("abc")));
     }
-
-
-
 }
