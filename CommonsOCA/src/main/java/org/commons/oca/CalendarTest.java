@@ -1,9 +1,12 @@
 package org.commons.oca;
 
+import java.lang.management.GarbageCollectorMXBean;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.logging.Logger;
+
+import javax.management.ObjectName;
 
 public class CalendarTest {
     
@@ -88,5 +91,43 @@ public class CalendarTest {
         System.out.println(date3);
         System.out.println(time);
         _LOG.info("[ENDING void toLocalTime()]");
+    }
+
+    public void localTimeDetails() {
+        _LOG.info("[ENTERING void localTimeDetails()]");
+
+        final LocalTime time = LocalTime.of(16, 20, 12, 98547);
+
+        System.out.println("Hour" + time.getHour());
+        System.out.println("Minute: " + time.getMinute());
+        System.out.println("Second: " + time.getSecond());
+        System.out.println("Nano: " + time.getNano());
+        
+        _LOG.info("[ENDING void localTimeDetails()]");
+    }
+
+    public void afterAndBefore() {
+        _LOG.info("[ENTERING void afterAndBefore()]");
+        
+        final LocalTime shreyaFinishTime = LocalTime.parse("17:09:12");
+        final LocalTime paulFinishTime = LocalTime.parse("17:09:05");
+        
+        if (shreyaFinishTime.isBefore(paulFinishTime))
+            System.out.println("Shreya Wins");
+        else if(shreyaFinishTime.isAfter(paulFinishTime))  
+            System.out.println("Paul Wins");
+
+        _LOG.info("[ENDING void afterAndBefore()]");
+    }
+
+    public void manipulatingLocalTime() {
+        _LOG.info("[ENTERING void manipulatingLocalTime()]");
+        
+        final LocalTime movieStartTime = LocalTime.parse("21:00:00");
+        final int commuteMin = 35;
+        final LocalTime shreyaStartTime = movieStartTime.minusMinutes(commuteMin);;
+        System.out.println("Start by: " + shreyaStartTime + " from office");
+
+        _LOG.info("[ENDING void manipulatingLocalTime()]");
     }
 }

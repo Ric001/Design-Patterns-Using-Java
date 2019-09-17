@@ -4,7 +4,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        CalendarTest calendarTest = new CalendarTest();
-        calendarTest.toLocalTime();
+        final CalendarTest calendarTest = new CalendarTest();
+        calendarTest.afterAndBefore();
     }
 }
