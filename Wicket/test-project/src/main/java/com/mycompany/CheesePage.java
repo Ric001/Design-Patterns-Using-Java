@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.mycompany.models.Cheese;
+import com.mycompany.wrappers.LoadableModel;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
@@ -13,6 +14,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.PropertyModel;
 
 public class CheesePage extends WebPage {
 
@@ -44,11 +46,17 @@ public class CheesePage extends WebPage {
             
                 final Cheese cheese = item.getModelObject();
                 item.add(new Label("name", cheese.getName()));
-                item.add(new Label("id", cheese.getId()));
+                item.add(new Label("price", cheese.getPrice()));
                 
                 _LOG.info("[ENDING void populateItem(ListItem<Cheese> item) " + item + "]");
             }
         });
-        
+
+        final LoadableModel cheeseModel = new LoadableModel(new Cheese(2L, "Danish", 20F));
+        final PropertyModel<LoadableModel> nameModel = new PropertyModel<>(cheeseModel, "name");
+        final String name = nameModel.getObject().getObject().getName();
+        nameModel.detach(); 
+
+        System.out.println("Cheese Name: " + name);       
     }
 }
