@@ -5,6 +5,6 @@ public class App
     public static void main( String[] args )
     {
         final CalendarTest calendarTest = new CalendarTest();
-        calendarTest.afterAndBefore();
+        calendarTest.periodFromLocalDate();;
     }
 }

@@ -2,10 +2,11 @@ package org.commons.oca;
 
 import java.lang.management.GarbageCollectorMXBean;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.logging.Logger;
-
+import java.time.Period;
 import javax.management.ObjectName;
 
 public class CalendarTest {
@@ -127,7 +128,155 @@ public class CalendarTest {
         final int commuteMin = 35;
         final LocalTime shreyaStartTime = movieStartTime.minusMinutes(commuteMin);;
         System.out.println("Start by: " + shreyaStartTime + " from office");
-
+        
         _LOG.info("[ENDING void manipulatingLocalTime()]");
+    }
+
+    public void usingLocalTimeConstants() {
+        _LOG.info("[ENTERING void usingLocalTimeConstants()]");
+        
+        final LocalTime MIN = LocalTime.MIN;
+        final LocalTime MAX = LocalTime.MAX;
+        final LocalTime MIDNIGHT = LocalTime.MIDNIGHT;
+        final LocalTime NOON = LocalTime.NOON;
+
+        System.out.println("Min Value Supported: " + MIN);
+        System.out.println("MAX Value Supported: " + MAX);
+        System.out.println("MIDNIGHT Value Supported: " + MIDNIGHT);
+        System.out.println("NOON Value Supported: " + NOON);
+
+
+        System.out.println(LocalTime.MIN. equals(LocalTime.MIDNIGHT));
+
+        _LOG.info("[ENDING void usingLocalTimeConstants()]");
+    }
+
+    public void queryingTime() {
+        _LOG.info("[ENTERING void queryingTime()]");
+
+        final LocalTime time = LocalTime.now();
+        System.out.println(time.getHour());
+        System.out.println(time.getMinute());
+        System.out.println(time.getSecond());
+        System.out.println(time.getNano());
+
+        _LOG.info("[ENDING void queryingTime()]");
+    }
+
+    public void manageLocalTime() {
+        _LOG.info("[ENTERING void manageLocalTime()]");
+
+        final int worldRecord = 10;
+        final LocalTime raceStartTime = LocalTime.of(8, 10, 55);
+        final LocalTime raceEndTime = LocalTime.of(8, 11, 11);
+        
+        if (raceStartTime.plusSeconds(worldRecord).isAfter(raceEndTime))
+            System.out.println("New World record");
+        else
+            System.out.println("Try Harder");
+        
+        _LOG.info("[ENDING void manageLocalTime()]");
+    }
+
+    public void performComparisons() {
+        _LOG.info("[ENTERING void performComparisons]");
+        
+        final int worldRecord = 10; 
+        final LocalTime raceStartTime = LocalTime.of(8, 10, 55);
+        final LocalTime raceEndTime = LocalTime.of(8, 10, 30);
+        
+        if (raceStartTime.plusSeconds(worldRecord).isAfter(raceEndTime))
+            System.out.println("New World Record");
+        else 
+            System.out.println("Try harder");
+
+        _LOG.info("[ENDING void performComparisons()]");
+    }
+
+    public void withXXXs() {
+        _LOG.info("[ENTERING void withXXXs()]");
+        
+        LocalTime startTime = LocalTime.of(5, 7, 9);
+        
+        if (startTime.getMinute() < 30)
+            startTime = startTime.withMinute(0);
+        System.out.println(startTime);
+        
+        _LOG.info("[ENDING void withXXXs()]");
+    }
+
+    public void compoundDateAndTime() {
+        _LOG.info("[ENTERING void compoundDate()]");
+
+        final LocalTime time = LocalTime.of(14, 10, 0);
+        final LocalDate date = LocalDate.of(2016, 02, 28);
+        final LocalDateTime dateTime = time.atDate(date);
+        final LocalDateTime dateTime2 = date.atTime(time);
+        System.out.println(dateTime);
+        System.out.println(dateTime2);
+        _LOG.info("[ENDING void compoundDate()]");
+    }
+ 
+    public void localDateTime() {
+        _LOG.info("[ENTERING void localDateTime()]");
+
+        final LocalDateTime prizeCeremony = LocalDateTime.parse("2050-06-05T14:00:00");
+        LocalDateTime now = LocalDateTime.now();
+        final int JUNE = 6;
+        
+        if (prizeCeremony.getMonthValue() == JUNE) 
+            System.out.println("Cant ivite president");
+        else 
+            System.out.println("President Invited");
+        
+
+        final LocalDateTime chiefGuestDeparture = LocalDateTime.parse("2050-06-05T14:30:00");
+        if (prizeCeremony.plusHours(2).isAfter(chiefGuestDeparture))
+            System.out.println("Chief Guest Will leave brefore ceremony");
+
+        final LocalDateTime eventMgrArrival = LocalDateTime.of(2050, 6, 5, 14, 30, 0);
+        if (eventMgrArrival.isAfter(prizeCeremony.minusHours(3)))
+            System.out.println("Manger is supposed to arrive 3 hrs earlier");
+
+        _LOG.info("[ENDING void localDateTime()]");
+    }
+
+    public void periodCalculation() {
+        _LOG.info("[ENTERING void periodCalculations()]");
+
+        final Period period = Period.of(1, 2, 7);
+        final Period periodYears = Period.ofYears(2);
+        final Period monthsPeriod = Period.ofMonths(5);
+        final Period weeksPeriod = Period.ofWeeks(10);
+        final Period daysPeriod = Period.ofDays(15);
+
+        System.out.println(period.toString());
+        System.out.println(periodYears);
+        System.out.println(monthsPeriod);
+        System.out.println(weeksPeriod);
+        System.out.println(daysPeriod);
+
+        _LOG.info("[ENDING void periodCalculations()]");
+    }
+
+    public void periodCalculationII() {
+        _LOG.info("[ENTERING void periodCalculationII]");
+        
+        final Period p5Yrs1 = Period.parse("P5Y");
+        final Period p5Yrs2 = Period.parse("p5Y");
+        System.out.println(p5Yrs1 + ":" + p5Yrs2);
+
+        _LOG.info("[ENDING void periodCalculation()II]");
+    }
+    
+    public void periodFromLocalDate() {
+        _LOG.info("[ENTERING void periodFromLocalDate()]");
+        
+        final LocalDate carnivalStart = LocalDate.of(2050, 12, 31);
+        final LocalDate carnivalEnd = LocalDate.of(2051, 1, 2);
+        
+        final Period periodBetween = Period.between(carnivalStart, carnivalEnd);
+        System.out.println(periodBetween);
+        _LOG.info("[ENDING void periodFromLocalDate()]");
     }
 }
