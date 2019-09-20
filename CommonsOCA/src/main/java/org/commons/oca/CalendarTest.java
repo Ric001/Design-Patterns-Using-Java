@@ -1,13 +1,14 @@
 package org.commons.oca;
 
-import java.lang.management.GarbageCollectorMXBean;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.logging.Logger;
 import java.time.Period;
-import javax.management.ObjectName;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 
 public class CalendarTest {
     
@@ -279,4 +280,117 @@ public class CalendarTest {
         System.out.println(periodBetween);
         _LOG.info("[ENDING void periodFromLocalDate()]");
     }
+
+    public void usingPeriodsOnLocals() {
+        _LOG.info("[ENTERING void usingPeriodsOnLocals()]");
+        
+        final LocalDate date = LocalDate.of(2052, 01, 31);
+        System.out.println(date.plus(Period.ofDays(1)));
+
+        _LOG.info("[ENDING void usingPeriodsOnLocals()]");
+    }
+
+    public void periodLocalDateTime() {
+        _LOG.info("[ENTERING void periodLocalDateTime()]");
+        
+        final LocalDateTime dateTime = LocalDateTime.parse("2020-01-31T14:18:36");
+        System.out.println(dateTime.minus(Period.ofYears(2)));
+        
+        final LocalDate date = LocalDate.of(2052, 01, 31);
+        System.out.println(date.minus(Period.ofWeeks(4)));
+
+        _LOG.info("[ENDING void periodLocalDateTime()]");
+    }
+
+    public void queryingPeriodInstances() {
+        _LOG.info("[ENTERING void queryingPeriodInstances()]");
+        
+        final Period period = Period.of(2, 4, 40);
+        System.out.println(period.getYears());
+        System.out.println(period.getMonths());
+        System.out.println(period.getDays());
+
+        _LOG.info("[ENDING void queryingPeriodInstances()]");
+    }
+
+    public void periodNullOrZero() {
+        _LOG.info("[ENTERING void periodNullOrZero()]");
+        
+        final Period days5 = Period.of(0, 0, 0);
+        System.out.println(days5.isZero());
+
+        final Period daysMinus5 = Period.of(0, 0, 5);
+        System.out.println(daysMinus5.isNegative());
+
+        _LOG.info("[ENDING void periodNUllOrZero()]");
+    }
+
+    public void manipulaTingPeriod() {
+        _LOG.info("[ENTERING void manipulatingPeriod()]");
+        
+        final Period period10Days = Period.of(0, 0, 10);
+        final Period period1Month = Period.of(0, 1, 0);
+        
+        System.out.println(period10Days.minus(period1Month));
+        System.out.println(period1Month.minusDays(5));
+        System.out.println(period10Days.minusMonths(5));
+        System.out.println(period10Days.minusYears(5));
+
+        _LOG.info("[ENDING void manipulatingPeriod()]");
+    }
+
+    public void addingPeriods() {
+        _LOG.info("[ENTERING void addingPeriods()]");
+
+        final Period period5Month = Period.of(0, 5, 0);
+        final Period period10Months = Period.of(0, 10, 0);
+        final Period period10Days = Period.of(0, 0, 10);
+
+        System.out.println(period5Month.plus(period10Months));
+        System.out.println(period10Days.plusDays(35));
+        System.out.println(period10Days.plusMonths(5));
+        System.out.println(period10Days.plusYears(5));
+        
+        _LOG.info("[ENDING void addingPeriods()]");
+    }
+
+    public void convertingPeriods() {
+        _LOG.info("[ENTERING void convertingPeriods()]");
+        
+        System.out.println(Period.of(10, 5, 40).toTotalMonths());
+
+        _LOG.info("[ENDING void convertingPeriods()]");
+    }
+
+    public void createDTFormatter() {
+        _LOG.info("[ENTERING void createDTFormatter()]");
+
+        final DateTimeFormatter formatter1 = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
+        final DateTimeFormatter formatter2 = DateTimeFormatter.ofLocalizedTime(FormatStyle.FULL);
+        final DateTimeFormatter formatter3 = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG);
+        final DateTimeFormatter formatter4 = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT, FormatStyle.SHORT);
+        
+        System.out.println(formatter1);
+        System.out.println(formatter2);
+        System.out.println(formatter3);
+        System.out.println(formatter4);
+        
+        _LOG.info("[ENDING void createDTFormatter()]");
+    }
+
+    public void accessConstants() {
+        _LOG.info("[ENTERING void accessConstants()]");
+        
+        final DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;
+        System.out.println(formatter);
+
+        final DateTimeFormatter formatterII = DateTimeFormatter.ISO_TIME;
+
+        final LocalTime time = LocalTime.now();
+        System.out.println(time);
+        System.out.println(formatterII);
+        _LOG.info("[ENDING void accessConstants()]");
+    }
+
+    
 }
