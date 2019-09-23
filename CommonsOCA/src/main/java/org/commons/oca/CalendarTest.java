@@ -362,35 +362,45 @@ public class CalendarTest {
         _LOG.info("[ENDING void convertingPeriods()]");
     }
 
-    public void createDTFormatter() {
-        _LOG.info("[ENTERING void createDTFormatter()]");
+    public void createDateTimeFormatter() {
+        _LOG.info("[ENTERING void createDateTimeFormatter()]");
 
         final DateTimeFormatter formatter1 = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
         final DateTimeFormatter formatter2 = DateTimeFormatter.ofLocalizedTime(FormatStyle.FULL);
         final DateTimeFormatter formatter3 = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG);
         final DateTimeFormatter formatter4 = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT, FormatStyle.SHORT);
-        
+
         System.out.println(formatter1);
         System.out.println(formatter2);
         System.out.println(formatter3);
         System.out.println(formatter4);
-        
-        _LOG.info("[ENDING void createDTFormatter()]");
-    }
 
-    public void accessConstants() {
-        _LOG.info("[ENTERING void accessConstants()]");
+        _LOG.info("[ENDING void createDateTimeFormatter()]");
+    }   
+
+    public void predefinedFormats() {
+        _LOG.info("[ENTERING void predefinedFormats()]");
+
+        final DateTimeFormatter formatter = DateTimeFormatter.BASIC_ISO_DATE;
+        final DateTimeFormatter formatter1 = DateTimeFormatter.ISO_DATE;
+        final DateTimeFormatter formatter2 = DateTimeFormatter.ISO_TIME;
+        final DateTimeFormatter formatter3 = DateTimeFormatter.ISO_DATE_TIME;
         
-        final DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;
+        System.out.println(formatter.format(LocalDate.now()));
+        System.out.println(formatter.format(LocalDate.now()) + "\n");
+        System.out.println(formatter1.format(LocalTime.now()) + "\n");
+        System.out.println(formatter2 + "\n");
+        System.out.println(formatter3 + "\n");
+    
+        _LOG.info("[ENDING void predefinedFormats()]");
+    }
+    
+    public void ofPattern() {
+        _LOG.info("[ENTERING void ofPattern()]");
+
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
         System.out.println(formatter);
 
-        final DateTimeFormatter formatterII = DateTimeFormatter.ISO_TIME;
-
-        final LocalTime time = LocalTime.now();
-        System.out.println(time);
-        System.out.println(formatterII);
-        _LOG.info("[ENDING void accessConstants()]");
+        _LOG.info("[ENDING void ofPattern()]");
     }
-
-    
 }
