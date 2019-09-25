@@ -4,8 +4,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        final CalendarTest calendarTest = new CalendarTest();
-        calendarTest.predefinedFormats();
-        
+        final Conditions conditions = new Conditions();
+        conditions.twist();
+
     }
 }

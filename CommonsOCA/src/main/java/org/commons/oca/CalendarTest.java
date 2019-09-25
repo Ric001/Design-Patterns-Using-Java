@@ -403,4 +403,79 @@ public class CalendarTest {
 
         _LOG.info("[ENDING void ofPattern()]");
     }
+
+    public void formatDate() {
+        _LOG.info("[ENTERING void formatDate()]");
+        
+        final DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
+        final LocalDate date = LocalDate.of(2057, 8, 11);
+        System.out.println(formatter.format(date));
+
+        _LOG.info("[ENDING void formatDate()]");
+    }
+
+    public void formatTime() {
+        _LOG.info("[ENTERING void formatTime()]");
+
+        final DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM);
+        final LocalTime time = LocalTime.now();
+        System.out.println(formatter.format(time));
+
+        _LOG.info("[ENDING void formatTime()]");
+    }
+
+    public void formatDateTime() {
+        _LOG.info("[ENTERING void formatDateTime()]");
+
+        final DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
+        final LocalDateTime dateTime = LocalDateTime.now();
+        
+        System.out.println(formatter.format(dateTime));
+        _LOG.info("[ENDING void formatDateTime()]");
+    }
+    
+    public void patternFormatting() {
+        _LOG.info("[ENTERING void patternFormatting()]");
+        
+        final LocalDate date = LocalDate.of(2057, 8, 11);
+        final LocalTime time = LocalTime.of(14, 30, 15);
+
+        final DateTimeFormatter d1 = DateTimeFormatter.ofPattern("y");
+        final DateTimeFormatter d2 = DateTimeFormatter.ofPattern("YYYY");
+        final DateTimeFormatter d3 = DateTimeFormatter.ofPattern("Y M D");
+        final DateTimeFormatter d4 = DateTimeFormatter.ofPattern("e");
+
+        final DateTimeFormatter t1 = DateTimeFormatter.ofPattern(" H h m s");
+        final DateTimeFormatter t2 = DateTimeFormatter.ofPattern("'Time now: 'HH mm a");
+
+        System.out.println(d1.format(date));
+        System.out.println(d2.format(date));
+        System.out.println(d3.format(date));
+        System.out.println(d4.format(date));
+        
+        System.out.println(t1.format(time));
+        System.out.println(t2.format(time));
+
+        _LOG.info("[ENDING void patternFormatting()]");
+    }
+
+    public void formatAtLocalDate() {
+        _LOG.info("[ENTERING void localing()]");
+        
+        final DateTimeFormatter d1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        final LocalDate date = LocalDate.parse("2057-01-29", d1);
+        System.out.println(date);
+
+        _LOG.info("[ENDING void localing()]");
+    }
+    
+    public void formatAtLocalTime() {
+        _LOG.info("[ENTERING void formatAtLocalTime()]");
+        
+        final DateTimeFormatter d1 = DateTimeFormatter.ISO_TIME;
+        final LocalTime time = LocalTime.now();
+        System.out.println(time);
+
+        _LOG.info("[ENDING void formatAtLocalTime()]");
+    }
 }
