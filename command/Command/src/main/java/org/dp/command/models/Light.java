@@ -26,5 +26,12 @@ public class Light {
             on();
     }
 
+    @Override
+    public String toString() {
+        return "Light [on=" + on + "]";
+    }
+
+    
+
     
 }
