@@ -475,7 +475,7 @@ public class CalendarTest {
         final DateTimeFormatter d1 = DateTimeFormatter.ISO_TIME;
         final LocalTime time = LocalTime.now();
         System.out.println(time);
-
+        
         _LOG.info("[ENDING void formatAtLocalTime()]");
     }
 }

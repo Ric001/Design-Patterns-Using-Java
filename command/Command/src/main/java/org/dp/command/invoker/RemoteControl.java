@@ -14,16 +14,32 @@ public class RemoteControl implements Invoker {
     
     private ICommand[] onCommands;
     private ICommand[] offCommands;
+    private ICommand lastCommand;
+    
+    
+    public static final int ZERO_SLOT = 0;
+    public static final int ONE_SLOT = 1;
+    public static final int TWO_SLOT = 2;
 
     public RemoteControl() {
         slot = Optional.empty();
         onCommands = new ICommand[7];
         offCommands = new ICommand[7];
         ICommand none = noneCommand();
-        for (int i = 0; i < onCommands.length; i++) {
-            onCommands[i] = none;
-            offCommands[i] = none;
-        }
+        lastCommand = none;
+        initSlotSet(none);
+    }
+
+    private void initSlotSet(ICommand noneCommand) {
+        _LOG.info("[ENTERING void initSlotSet()]");
+
+        if (Objects.nonNull(noneCommand))
+            for (int i = 0; i < onCommands.length; i++) {
+                onCommands[i] = noneCommand;
+                offCommands[i] = noneCommand;
+            }
+
+        _LOG.info("[ENDING void initSlotSet()]");
     }
 
     private ICommand noneCommand() {
@@ -33,6 +49,12 @@ public class RemoteControl implements Invoker {
             @Override
             public void execute() {
                 System.out.println("[ NONE ]");   
+            }
+
+            @Override
+            public void undo() {
+               System.out.println("[ NONE ]");
+
             }
         };
 
@@ -80,10 +102,12 @@ public class RemoteControl implements Invoker {
         _LOG.info("[ENDING void setCommand(final int slot, final ICommand onCommand, ICommand offCommand)]");
     }
 
+
     public void onButtonWasPushed(final int slot) {
         _LOG.info("[ENTERING void onButtonWasPushed(final int slot)]");
 
         onCommands[slot].execute();
+        lastCommand = onCommands[slot];
 
         _LOG.info("[ENDING void onButtonWasPushed(final int slot)]");
     }
@@ -92,10 +116,18 @@ public class RemoteControl implements Invoker {
         _LOG.info("[ENTERING void offButtonWasPushed(final int slot)]");
 
         offCommands[slot].execute();
+        lastCommand = offCommands[slot];
         
         _LOG.info("[ENDING void offButtonWasPushed(final int slot)]");
     }
 
+    public void undo() {
+        _LOG.info("[ENTERING void undo()]");
+
+        lastCommand.undo();
+
+        _LOG.info("[ENDING void undo()]");
+    }
     @Override
     public String toString() {
         final StringBuffer buffer = new StringBuffer();

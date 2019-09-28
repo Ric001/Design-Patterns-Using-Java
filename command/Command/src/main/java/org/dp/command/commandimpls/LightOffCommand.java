@@ -24,4 +24,14 @@ public class LightOffCommand implements ICommand {
         _LOG.info("[ENDING void execute()] -> " + _light);
     }
 
+    @Override
+    public void undo() {
+      _LOG.info("[ENTERING void undo()]");
+      
+        if (!_light.isOn())
+            _light.toggle();
+      
+     _LOG.info("[ENDING void undo()]");
+    }
+
 }

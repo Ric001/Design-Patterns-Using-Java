@@ -6,11 +6,11 @@ import java.util.Objects;
 import org.dp.command.infrastructure.ICommand;
 import org.dp.command.models.GarageDoor;
 
-public class GarageDoorCommand implements ICommand {
+public class GarageOpenDoorCommand implements ICommand {
 
     private GarageDoor optional;
 
-    public GarageDoorCommand(GarageDoor door) {
+    public GarageOpenDoorCommand(GarageDoor door) {
         if (Objects.nonNull(door))
             optional = door;
     }
@@ -18,6 +18,12 @@ public class GarageDoorCommand implements ICommand {
     @Override
     public void execute() {
         optional.open();
+    }
+
+    @Override
+    public void undo() {
+        optional.close();
+
     }
 
 }
