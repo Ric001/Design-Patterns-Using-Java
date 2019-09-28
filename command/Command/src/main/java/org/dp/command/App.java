@@ -63,6 +63,10 @@ public class App
     }
 
     private static void runMacro(RemoteControl remoteControl) {
-        
+        remoteControl.onButtonWasPushed(remoteControl.TWO_SLOT);
+        remoteControl.undo();
+
+        remoteControl.offButtonWasPushed(remoteControl.TWO_SLOT);
+        remoteControl.undo();
     }
 }
