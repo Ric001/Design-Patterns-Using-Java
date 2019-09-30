@@ -30,11 +30,11 @@ public class App
         remoteControl.setCommand(RemoteControl.ZERO_SLOT, lightOnCommand, lightOffCommand);
         remoteControl.setCommand(RemoteControl.ONE_SLOT, openCommand, closeCommand);
 
-        ICommand[] offMacro = { closeCommand, lightOffCommand };
-        ICommand[] onMacro = { openCommand, lightOnCommand };
+        final ICommand[] offMacroCommandArray = { closeCommand, lightOffCommand };
+        final ICommand[] onMacroCommandArray = { openCommand, lightOnCommand };
 
-        ICommand offMacroCommand = new MacroCommand(Optional.of(offMacro));
-        ICommand onMacroCommand = new MacroCommand(Optional.of(onMacro));
+        final ICommand offMacroCommand = new MacroCommand(Optional.of(offMacroCommandArray));
+        final ICommand onMacroCommand = new MacroCommand(Optional.of(onMacroCommandArray));
         
         remoteControl.setCommand(RemoteControl.TWO_SLOT, onMacroCommand, offMacroCommand);
         System.out.println(remoteControl);
@@ -63,10 +63,12 @@ public class App
     }
 
     private static void runMacro(RemoteControl remoteControl) {
-        remoteControl.onButtonWasPushed(remoteControl.TWO_SLOT);
+
+        remoteControl.onButtonWasPushed(RemoteControl.TWO_SLOT);
         remoteControl.undo();
 
-        remoteControl.offButtonWasPushed(remoteControl.TWO_SLOT);
+        remoteControl.offButtonWasPushed(RemoteControl.TWO_SLOT);
         remoteControl.undo();
+    
     }
 }
