@@ -171,4 +171,81 @@ class TernaryConst {
         System.out.println("Reg Discount -> 10");
         return 10;
     }
+
+    public void caseConstants() {
+        _LOG.info("[ENTERING void caseConstants()]");
+        
+        final int a = 50;
+        final int b = 20;
+        final int c = 30;
+
+        switch(a) {
+            case b + c: 
+            System.out.println("A + B -> " + (a + b));
+            break;
+            case 10 * 7:
+                System.out.println("Hello People");
+                break;
+        }
+    
+        _LOG.info("[ENDING void caseConstants()]");
+    }
+
+    
+    public void execute() {
+        _LOG.info("[ENTERING void execute()]");
+        
+        final int a = 10;
+        final int b = 20;
+        final int c = 30;
+        
+        switch(a) {
+            case b + c : 
+                System.out.println(b + c);
+                break;
+        }
+
+        _LOG.info("[ENDING void execute()]");
+    }
+
+    public void executeII() {
+        _LOG.info("[ENTERING void executeII()]");
+        
+        final byte myByte = 10;
+        final String name = null;
+        final String lastname = "Osiris";
+    
+        switch(String.valueOf(name)) {
+            case "Paul" : 
+                System.out.println(1);
+                break;
+            case "null":
+                System.out.println("null");
+                break;
+        }
+
+        _LOG.info("[ENDING void executeII()]");
+    }
+
+    public void executeIII() {
+        _LOG.info("[ENTERING void executeIII()]");
+
+        final int score = 10;
+        
+        switch(score) {
+            case 100:
+            case 50:
+            case 10:
+                System.out.println("Average score");
+                break;    
+            case 200:
+                System.out.println("Good Score");
+                break;
+        }
+
+        
+
+        _LOG.info("[ENDING void executeIII()]");
+    }
+
 }
