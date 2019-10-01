@@ -1,0 +1,9 @@
+Plans < - > Unit:
+Un modulo de codigo que permita crear un conjunto de planes
+comunes y volverlos intercambiables en tiempo de ejecucion. 
+
+Cuales son las caracteristicas de estos planes?
+Cuales son sus aspectos con tendencia al cambio? 
+Cada cuanto tiempo cambian?
+Cuales son las caracteristicas comunes de cada plan entre si?
+
