@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 public class RedirectEventCreator {
     
    private Optional<ICommand> eventExecuter;
-   
+   public final static String LAST_VISITED_PAGE = "last-visited-page";
    private final Logger _LOG = LoggerFactory.getLogger(RedirectEvent.class);
 
    public RedirectEventCreator(Optional<? extends WebPage> pageRef, Optional<Class<? extends Page>> pageToRender) {
@@ -29,10 +29,16 @@ public class RedirectEventCreator {
        final Optional<Redirecter> redirecter = Optional.of(new Redirecter(pageRef, pageToRender));
        final RedirectEvent redirectingEvent = new RedirectEvent(redirecter); 
        eventExecuter = Optional.of(redirectingEvent);
+      
 
        _LOG.info("[ENDNIG void setCommand(Optional<? extends WebPage> pageRef, Optional<Class<? extends Page>> pageToRender)]");
    }
 
+   public void savePageVisitedBeforeRedirection(final Optional<? extends WebPage> lastVisitedPage) {
+        if (lastVisitedPage.isPresent())
+            lastVisitedPage.get().getSession().setAttribute(LAST_VISITED_PAGE, lastVisitedPage.getClass());
+            
+   }
    public Link<Void> event(final String id) {
      _LOG.info("[ENTERING Link<Void> event(final String id)]");
         final Link<Void> event = new Link<Void>(id) {
