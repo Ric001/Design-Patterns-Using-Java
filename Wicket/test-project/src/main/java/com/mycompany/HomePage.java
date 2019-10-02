@@ -4,11 +4,21 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Optional;
+import java.util.function.Supplier;
+
+import com.mycompany.command_infrastructure.creators.RedirectEventCreator;
 import com.mycompany.models.Recipe;
+import com.mycompany.my.commons.base.CustomAdder;
+import com.mycompany.my.commons.base.ICustomAdder;
+
+import org.apache.wicket.Component;
+import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.basic.MultiLineLabel;
 import org.apache.wicket.markup.html.link.ExternalLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 
 public class HomePage extends WebPage {
@@ -34,6 +44,21 @@ public class HomePage extends WebPage {
 		add(link());
 		addingRecepies();
 		hamburger();
+
+		ICustomAdder customAdder = new CustomAdder();
+		customAdder.add(this, redirecter("redirecter"));
+		
+	}
+
+	private Link<Void> redirecter(final String id) {
+		_LOG.info("[ENTERING Link<Void> eventLink()]");
+		
+		final Optional<? extends WebPage> thisPage = Optional.of(this);
+		final Optional<Class<? extends Page>> pageToRender = Optional.of(InfoPage.class);
+		final Link<Void> event = new RedirectEventCreator(thisPage, pageToRender).event(id);
+
+		_LOG.info("[ENDING Link<Void> eventlink()]");
+		return event;
 	}
 
 	private void externalLink(final int registrationId) {
@@ -85,4 +110,10 @@ public class HomePage extends WebPage {
 	}
 	
 	
+}
+
+class Command {
+	public void redirect(Component component) {
+		component.setResponsePage(InfoPage.class);
+	}
 }
