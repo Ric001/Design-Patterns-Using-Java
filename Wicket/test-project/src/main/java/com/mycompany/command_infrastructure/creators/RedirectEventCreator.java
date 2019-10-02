@@ -29,16 +29,21 @@ public class RedirectEventCreator {
        final Optional<Redirecter> redirecter = Optional.of(new Redirecter(pageRef, pageToRender));
        final RedirectEvent redirectingEvent = new RedirectEvent(redirecter); 
        eventExecuter = Optional.of(redirectingEvent);
-      
-
+       saveLastPageBeforeRedirection(pageRef);
+        
        _LOG.info("[ENDNIG void setCommand(Optional<? extends WebPage> pageRef, Optional<Class<? extends Page>> pageToRender)]");
    }
 
-   public void savePageVisitedBeforeRedirection(final Optional<? extends WebPage> lastVisitedPage) {
+   public void saveLastPageBeforeRedirection(final Optional<? extends WebPage> lastVisitedPage) {
+       _LOG.info("[ENTERING void saveLastPageBeforeRedirection(final Optional<? extends WebPage> lastVisitedPage)]");
+
+       final Class<? extends WebPage> pageClass = lastVisitedPage.get().getClass();
+
         if (lastVisitedPage.isPresent())
-            lastVisitedPage.get().getSession().setAttribute(LAST_VISITED_PAGE, lastVisitedPage.getClass());
-            
-   }
+            lastVisitedPage.get().getSession().setAttribute(LAST_VISITED_PAGE, pageClass);
+
+        _LOG.info("[ENDING saveLastPageBeforeRedirection(final Optional<? extends WebPage> lastVisitedPage)]");
+    }
    public Link<Void> event(final String id) {
      _LOG.info("[ENTERING Link<Void> event(final String id)]");
         final Link<Void> event = new Link<Void>(id) {

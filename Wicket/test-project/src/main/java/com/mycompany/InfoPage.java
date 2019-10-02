@@ -43,7 +43,8 @@ public class InfoPage extends WebPage {
         _LOG.info("[RETURNING Label mealName() ] -> " + label + " key: " + HomePage.MEAL_NAME);
         return label;
     }
-
+    //Usar Reflexion para invocar todos los metodos de un container de wicket para ir agregando cada uno de los componentes con el 
+    // ICustomAdder. 
     private Component backButton() {
         _LOG.info("[ENTERING void backButton()]");
 
