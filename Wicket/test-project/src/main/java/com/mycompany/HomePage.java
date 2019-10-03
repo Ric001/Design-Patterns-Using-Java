@@ -1,25 +1,23 @@
 package com.mycompany;
 
-import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Optional;
-import java.util.function.Supplier;
 
 import com.mycompany.command_infrastructure.creators.RedirectEventCreator;
+import com.mycompany.command_infrastructure.events.Redirecter;
 import com.mycompany.models.Recipe;
 import com.mycompany.my.commons.base.CustomAdder;
 import com.mycompany.my.commons.base.ICustomAdder;
 
-import org.apache.wicket.Component;
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.basic.MultiLineLabel;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HomePage extends WebPage {
 
@@ -46,19 +44,16 @@ public class HomePage extends WebPage {
 		hamburger();
 
 		ICustomAdder customAdder = new CustomAdder();
-		customAdder.add(this, redirecter("redirecter"));
-		
+		customAdder.add(this, redirectionEvent("redirecter"));
 	}
 
-	private Link<Void> redirecter(final String id) {
-		_LOG.info("[ENTERING Link<Void> eventLink()]");
+	private Link<Void> redirectionEvent(final String id) {
+		_LOG.info("[ENTERING Link<Void> redirectionEvent(final String id)]");
 		
 		final Optional<? extends WebPage> thisPage = Optional.of(this);
 		final Optional<Class<? extends Page>> pageToRender = Optional.of(InfoPage.class);
-		final Link<Void> event = new RedirectEventCreator(thisPage, pageToRender).event(id);
 
-		_LOG.info("[ENDING Link<Void> eventlink()]");
-		return event;
+		return new RedirectEventCreator(thisPage, pageToRender).event(id);
 	}
 
 	private void externalLink(final int registrationId) {
@@ -78,9 +73,9 @@ public class HomePage extends WebPage {
 		_LOG.info("[ENTERING BookmarkablePageLink link()]");
 
 		final BookmarkablePageLink<InfoPage> link = new BookmarkablePageLink<>("bookmarkable-link", InfoPage.class);
-		final Class<InfoPage> infoPage = InfoPage.class;
+		final Class<InfoPage> infoPageClass = InfoPage.class;
 
-		System.out.println(link + "\n");
+		System.out.println(link + "\n" + "Class: " + infoPageClass);
 		_LOG.info("[RETURNING BookmarkablePageLink link()]");
 		return link;
 	}
@@ -110,10 +105,4 @@ public class HomePage extends WebPage {
 	}
 	
 	
-}
-
-class Command {
-	public void redirect(Component component) {
-		component.setResponsePage(InfoPage.class);
-	}
 }

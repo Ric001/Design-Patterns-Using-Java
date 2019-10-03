@@ -1,23 +1,31 @@
 package com.mycompany.command_infrastructure.creators;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 import com.mycompany.command_infrastructure.ICommand;
 import com.mycompany.command_infrastructure.RedirectEvent;
-import com.mycompany.command_infrastructure.events.Reciever;
+import com.mycompany.command_infrastructure.events.AdderEvent;
 import com.mycompany.command_infrastructure.events.Redirecter;
+import com.mycompany.my.commons.base.CustomAdder;
+import com.mycompany.my.commons.base.ICustomAdder;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.Page;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.model.IModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RedirectEventCreator {
-    
-   private Optional<ICommand> eventExecuter;
-   public final static String LAST_VISITED_PAGE = "last-visited-page";
-   private final Logger _LOG = LoggerFactory.getLogger(RedirectEvent.class);
+public class RedirectEventCreator implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    private transient Optional<ICommand> eventExecuter;
+    public final static String LAST_VISITED_PAGE = "last-visited-page";
+    private final Logger _LOG = LoggerFactory.getLogger(RedirectEvent.class);
 
    public RedirectEventCreator(Optional<? extends WebPage> pageRef, Optional<Class<? extends Page>> pageToRender) {
         setCommand(pageRef, pageToRender);
@@ -34,7 +42,9 @@ public class RedirectEventCreator {
        _LOG.info("[ENDNIG void setCommand(Optional<? extends WebPage> pageRef, Optional<Class<? extends Page>> pageToRender)]");
    }
 
-   public void saveLastPageBeforeRedirection(final Optional<? extends WebPage> lastVisitedPage) {
+   
+   
+   private void saveLastPageBeforeRedirection(final Optional<? extends WebPage> lastVisitedPage) {
        _LOG.info("[ENTERING void saveLastPageBeforeRedirection(final Optional<? extends WebPage> lastVisitedPage)]");
 
        final Class<? extends WebPage> pageClass = lastVisitedPage.get().getClass();
@@ -44,8 +54,10 @@ public class RedirectEventCreator {
 
         _LOG.info("[ENDING saveLastPageBeforeRedirection(final Optional<? extends WebPage> lastVisitedPage)]");
     }
+
    public Link<Void> event(final String id) {
-     _LOG.info("[ENTERING Link<Void> event(final String id)]");
+    _LOG.info("[ENTERING Link<Void> event(final String id)]");
+
         final Link<Void> event = new Link<Void>(id) {
             private final static long serialVersionUID = 1L;
             @Override
@@ -54,9 +66,9 @@ public class RedirectEventCreator {
                     eventExecuter.get().execute();
             }
         };
-        _LOG.info("[ENTERING Link<Void> event(final String id)]");
-        return event;
+
+    _LOG.info("[ENDING Link<Void> event(final String id) " + event + "]");
+    return event;
    }
 
-   
 }
