@@ -1,33 +1,31 @@
 package com.mycompany;
 
+import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.util.lang.Bytes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- * Application object for your web application.
- * If you want to run this application without deploying, run the Start class.
- * 
- * @see com.mycompany.Start#main(String[])
- */
-public class WicketApplication extends WebApplication
-{
-	/**
-	 * @see org.apache.wicket.Application#getHomePage()
-	 */
+public class WicketApplication extends WebApplication {
+	private final static Logger LOG = LoggerFactory.getLogger(WicketApplication.class);
+	private final static String APP_NAME_PREFIX = "wicket.";
+	private final static String EMPTY_SPACE = "";
 	@Override
-	public Class<? extends WebPage> getHomePage()
-	{
+	public Class<? extends WebPage> getHomePage() {
 		return HomePage.class;
 	}
 
-	/**
-	 * @see org.apache.wicket.Application#init()
-	 */
+	@Override
+	public RuntimeConfigurationType getConfigurationType() {
+		return RuntimeConfigurationType.DEVELOPMENT;
+	}
+
 	@Override
 	public void init()
 	{
 		super.init();
-
-		// add your configuration here
+		LOG.info("[INITING Configurations......] -> Name: " + getName().replace(APP_NAME_PREFIX, EMPTY_SPACE));
+		getApplicationSettings().setDefaultMaximumUploadSize(Bytes.kilobytes(100));
 	}
 }

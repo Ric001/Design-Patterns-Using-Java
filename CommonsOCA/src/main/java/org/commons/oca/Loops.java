@@ -2,12 +2,35 @@ package org.commons.oca;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class Loops {
     
     private final static Logger _LOG = Logger.getLogger(Loops.class.getName());
     
+    public void enhancedForLoop() {
+        _LOG.info("[ENTERING void enhancedForLoop()]");
+        
+        final List<String> exams = new ArrayList<>();
+        exams.add("Java");
+        exams.add("Oracle");
+        
+        final List<String> levels = new ArrayList<>();
+        levels.add("Basic");
+        levels.add("Advanced");
+        
+        final List<String> grades = new ArrayList<>();
+        grades.add("Password");
+        grades.add("Fail");
+        
+        for (final String exam : exams) 
+            for (final String level : levels)
+                for (final String grade : grades) 
+                    System.out.println(exam + ":" + level + ":" + grade);
+        
+        _LOG.info("[ENDING void enhancedFoorLoop()]");
+    }
     public void forLoop() {
         _LOG.info("[ENTERING void forLoop()]");
 
@@ -122,5 +145,52 @@ public class Loops {
         System.out.println(total);
 
         _LOG.info("[ENDING void printingLoop()]");
+    }
+
+    public void whileLoop() {
+        _LOG.info("[ENTERING void whileLopp()]");
+        
+        int num = 9;
+        boolean divisibleBy7 = false;
+        while (!divisibleBy7) {
+            System.out.println(num);
+            if (num % 7 == 0) divisibleBy7 = true;
+            --num;
+        }
+
+        _LOG.info("[ENDING void whileLoop()]");
+    }
+
+
+    public void doWhile() {
+        _LOG.info("[ENTERING void doWhile()]");
+        
+        boolean exitSelected = false;
+        do {
+            final String selectedOption = displayMenuToUser();
+            if (selectedOption.equals("exit"))
+                exitSelected = true;
+            else
+                executeCommand(selectedOption);
+        } while (exitSelected == false);
+
+        _LOG.info("[ENDING void doWhile()]");
+    }
+
+    private void executeCommand(final String command) {
+        System.out.println("Executing " + command);
+    }
+
+    private String displayMenuToUser() {
+        _LOG.info("[ENTERING String displayMenuToUser()]");
+
+        final String EXIT_OPTION = "exit";
+        System.out.println("========================");
+        System.out.println("      1.Do Nothing      ");
+        System.out.println("      2. Exit           ");
+        System.out.println("========================");
+        
+        _LOG.info("[RETURNING FROM String displayMenuToUser()] " + EXIT_OPTION);
+        return EXIT_OPTION;
     }
 }
