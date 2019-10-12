@@ -10,6 +10,7 @@ public class HomePage extends WebPage {
 
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
+		setResponsePage(CheesePage.class);
 		add(new PersonalInfo("personal-info"));
 		add(new CustomerInput("customer-info"));
 	}
