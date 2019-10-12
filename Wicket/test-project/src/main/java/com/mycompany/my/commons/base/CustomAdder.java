@@ -1,9 +1,13 @@
 package com.mycompany.my.commons.base;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.logging.Logger;
-
+import static java.util.Objects.nonNull;
+import static java.util.Objects.isNull;
 import org.apache.wicket.Component;
+import org.apache.wicket.MarkupContainer;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 
@@ -11,42 +15,46 @@ public class CustomAdder implements ICustomAdder {
 
     private final static Logger _LOG = Logger.getLogger(CustomAdder.class.getName());
 
+    private Optional<MarkupContainer> container;
+    private Optional<WebPage> page;
+    private Optional<AjaxRequestTarget> target;
+    
     @Override
-    public WebMarkupContainer add(WebMarkupContainer clientContainer, Component... components) {
-        _LOG.info("[ENTERING WebMarkupContainer add(WebMarkupContainer clientContainer, Component... components)]");
+    public ICustomAdder add(Component... components) 
+    {
+        if (isNull(components))
+            return this;
 
-        if (areBothValid(clientContainer, components))
-            for (Component component : components)
-                clientContainer.add(component);
-        else 
-            clientContainer.info(ERROR_MESSAGE);
+        if(container.isPresent())
+            for(Component children : components)
+                container.get().add(children);
+        
+        else if (page.isPresent())
+            for(Component children : components)
+                page.get().add(children);
 
-        _LOG.info("[RETURNING FROM WebMarkupContainer add(WebMarkupContainer clientContainer, Component... components)]");
-        return clientContainer;
+        else if (target.isPresent())
+            for (Component child : components)
+                page.get().add(child);
+
+        return this;
     }
 
     @Override
-    public boolean areBothValid(Object container, Component... components) {
-        _LOG.info("[ENTERING boolean areBothValid(WebMarkupContainer container, Component... components)]");
-
-        if (Objects.nonNull(container) && Objects.nonNull(components))
-            return true;
-
-        _LOG.info("[RETURNING FROM boolean areBothValid(WebMarkupContainer container, Component... components)]");
-        return false;
+    public ICustomAdder setFatherContainer(WebMarkupContainer clientContainer) {
+        this.container = Optional.of(clientContainer);
+        return this;
     }
 
     @Override
-    public WebPage add(WebPage page, Component... components) {
-        _LOG.info("[ENTERING WebPage add(WebPage page, Component... components)]");
+    public ICustomAdder setFatherContainer(WebPage page) {
+        this.page = Optional.of(page);
+        return this;
+    }
 
-        if (areBothValid(page, components))
-            for(Component componentToAdd : components)
-                page.add(componentToAdd);
-        else
-            page.info(ERROR_MESSAGE);   
-
-        _LOG.info("[RETURNING WebPage add(WebPage page, Component... components) " + page + "]");
-        return page;
+    @Override
+    public ICustomAdder setFatherContainer(AjaxRequestTarget target) {
+        this.target = Optional.of(target);
+        return this;
     }
 }

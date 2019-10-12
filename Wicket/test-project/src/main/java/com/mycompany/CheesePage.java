@@ -3,57 +3,113 @@ package com.mycompany;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
-import com.mycompany.models.Cheese;
-import com.mycompany.wrappers.LoadableCheeseModel;
 
+import com.mycompany.command_infrastructure.creators.AjaxFallbackEventCreator;
+import com.mycompany.command_infrastructure.events.exceptions.ErrorMessages;
+import com.mycompany.models.Cheese;
+import com.mycompany.my.commons.base.CustomAdder;
+
+
+import org.apache.wicket.Component;
+import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
-
+import org.apache.wicket.request.mapper.parameter.PageParameters;
+/**
+ * 
+ * @author Jose Ricardo Osorio Soto
+ * 
+ */
 public class CheesePage extends WebPage {
 
     private static final long serialVersionUID = 1L;
     private final static Logger _LOG = Logger.getLogger(CheesePage.class.getName());
 
-    public CheesePage() {
-        IModel<List<Cheese>> model = new LoadableDetachableModel<List<Cheese>>() {
-            private static final long serialVersionUID = 1L;
+    public CheesePage() 
+    {
+        final ListView<Cheese> cheesesListView = buildListView(loadableModel());
+        final AjaxFallbackLink<Void> messageAdderEvent = ajaxLink("event"); 
+
+        new CustomAdder().setFatherContainer(this).add(cheesesListView, messageAdderEvent);
+    }
+    
+    public CheesePage(final PageParameters params) 
+    {
+        this();
+        System.out.println("=================");
+        System.out.println(" " + params + " ");
+        System.out.println("=================");
+    }
+
+    private AjaxFallbackLink<Void> ajaxLink(final String id) {
+        _LOG.info("[ENTERING AjaxFallbackLink<Void> ajaxLink(final String id)]");
+
+        if (Strings.isNotNullOrEmpty(id))
+        {
+            throw new IllegalStateException(ErrorMessages.ILLEGAL_STATE_MESSAGE.toString());
+        }
+        
+        final Optional<Component> label = Optional.of(new Label("sing", "Terminator"));
+        final AjaxFallbackLink<Void> link = new AjaxFallbackEventCreator().addingEvent(id, label);
+
+        _LOG.info("[RETURNING FROM AjaxFallbackLink<Void> ajaxLink(final String id) " + link + "]");
+
+        return link;
+    }
+
+    public void assertIsNotNull(final Optional<? extends Object> obj) 
+    {   
+        if (!obj.isPresent())
+        {
+            throw new IllegalStateException(ErrorMessages.ILLEGAL_STATE_MESSAGE.toString());
+        }
+    }
+
+    private ListView<Cheese> buildListView(final IModel<List<Cheese>> model) 
+    {
+        assertIsNotNull(Optional.of(model));
+        final ListView<Cheese> listView = new ListView<Cheese>("products", model) 
+        {
+            private final static long serialVersionUID = 1L;
 
             @Override
-            protected List<Cheese> load() {
-                _LOG.info("[ENTERING List<Cheese> load()]");
-  
-                List<Cheese> list = new ArrayList<>();
-                list.add(new Cheese(1L, "Roquefourt", 20F));
-                list.add(new Cheese(2L, "Cheddar", 20F));
-                list.add(new Cheese(3L, "Gouda", 20F));
-  
-                _LOG.info("[ENDING List<Cheese> load()]");
-                return Collections.unmodifiableList(list);
+            public void populateItem(ListItem<Cheese> item) 
+            {
+                _LOG.info("[ENTERING void populateItem(ListItem<Cheese> item)]");
+                
+                final Cheese cheese = item.getModelObject();
+                item.add(new Label("name", cheese.getName()));
+                item.add(new Label("price", cheese.getPrice()));
+                
+                _LOG.info("[ENDING void populateItem(ListItem<Cheese> item) " + item + "]");
             }
         };
 
-        add(new ListView<Cheese>("cheeses", model) {
+        return listView;
+    }
+
+    private IModel<List<Cheese>> loadableModel() {
+        IModel<List<Cheese>> model = new LoadableDetachableModel<List<Cheese>>() {
             private static final long serialVersionUID = 1L;
-
+            
             @Override
-            public void populateItem(ListItem<Cheese> item) {
-                _LOG.info("[ENTERING void populateItem(ListItem<Cheee> item)]");
+            public List<Cheese> load() {
+                _LOG.info("[ENTERING List<Cheese> load()]");
 
-                Cheese cheese = item.getModelObject();
-                item.add(new Label("desc", cheese.getName()));
-                item.add(new Label("amount", cheese.getPrice()));
-                item.add(new Label("uniqueN", cheese.getId()));
-
-                _LOG.info("[ENDING void populateItem(ListItem<Cheese> item)]");
+                final List<Cheese> cheeses = new ArrayList<>();
+                cheeses.add(new Cheese(1L, "Roquefourt", 20F));
+    
+                _LOG.info("[RETURNING List<Cheese> load() " + cheeses + "]");
+                return Collections.unmodifiableList(cheeses);
             }
-        });
-        final Long USER_ID = 1L;
-        add(new Form<>("cheesesForm", new LoadableCheeseModel(USER_ID)));
+        };
+
+        return model;
     }
 }
