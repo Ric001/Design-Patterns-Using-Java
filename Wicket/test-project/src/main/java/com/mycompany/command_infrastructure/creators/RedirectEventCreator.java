@@ -20,7 +20,7 @@ public class RedirectEventCreator implements Serializable {
     private static final long serialVersionUID = 1L;
     private transient Optional<ICommand> eventExecuter;
     public final static String LAST_VISITED_PAGE = "last-visited-page";
-    private final Logger _LOG = LoggerFactory.getLogger(RedirectEvent.class);
+    private final Logger _LOG = LoggerFactory.getLogger(RedirectEventCreator.class);
 
    public RedirectEventCreator(Optional<? extends WebPage> pageRef, Optional<Class<? extends Page>> pageToRender) {
         setCommand(pageRef, pageToRender);
@@ -51,12 +51,7 @@ public class RedirectEventCreator implements Serializable {
    public Link<Void> event(final String id) 
    {
     _LOG.info("[ENTERING Link<Void> event(final String id)]");
-
-        if (Strings.isNullOrEmpty(id))
-        {
-            throw new IllegalStateException(ErrorMessages.ILLEGAL_STATE_MESSAGE.toString());
-        }
-
+        assertIsNotNullOrEmpty(id);
         final Link<Void> event = new Link<Void>(id) 
         {
             private final static long serialVersionUID = 1L;
@@ -72,4 +67,11 @@ public class RedirectEventCreator implements Serializable {
     return event;
    }
 
+   private void assertIsNotNullOrEmpty(final String field) 
+   {
+        if (Strings.isNullOrEmpty(field))
+        {
+            throw new IllegalStateException(ErrorMessages.ILLEGAL_STATE_MESSAGE.toString());
+        }
+   }
 }

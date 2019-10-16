@@ -1,0 +1,80 @@
+************************ Optical Framework: ***********************
+    
+    Optical sera una API construida sobre de Apache Wicket con el 
+    fin de resolver problemas comunes en el uso del frame
+    work, evitar complejidades innecesarias e incrementar
+    la efectividad de Apache Wicket con la adicion de 
+    otros componentes utiles basados en el catalogo existente. 
+
+************************ Optical Framework: **********************
+
+Optical Framework contendra los siguientes componentes:
+
+Una fabrica de componentes con eventos prefabricados para:
+
+    - Repeaters: ListView, RepeatingView, PageableListView
+    - Links: Link, AjaxfallbackLink, BookmarkableLink, ExternalLink
+    - Forms: Form, input 
+    - Button: button
+
+Componentes prefabricados: 
+    - Optical JDBC: Este componente ocultara toda la complejidad del acceso a datos, permitara acceder a los registros o coleccion
+        de registros en una sola orden. 
+
+    - Optical Mailing: Este componente recibira los parametros configurados via codigo o archivo de configuracion, 
+        almacenara un historico de las configuraciones y enviara el email automaticamente a uno o a todos los emails 
+        configurados. 
+    
+    - Optical Blog: Es una bateria de componentes prefabricados pensados para quien desea desarrollar un blog.
+
+    - Optical Scheduler: Es una bateria componentes prefabricados pensados para aquellos que desean automatizar tareas comunes.
+
+    - Optical Menu: Es una bateria de componentes de menu(navegacion, option panes, tabs).
+
+
+************************* Optical Master Saver ************************
+
+ - Un sistema de agregacion de componentes comun llamado MasterSaver que 
+    configure un contenedor cliente y el arreglo de componentes que seran 
+    agregados. 
+ - La capacidad de crear markups HTML automaticamente. 
+
+********************** Optical Events ***********************************
+
+Este paquete de la API contendra: AjaxLink, Link, AjaxfallbackLink contaran con una interface que expondran 
+sus comandos mas comunes para realizar las siguientes tareas: 
+    - Operaciones CRUD 
+    - Redireccion
+    - Ejecucion de Js
+    - Agregacion y / o actualizacion de componentes. 
+
+************************* Optical Repeaters **************************************
+
+Este paquete de la API contendra repetidores de logica de poblacion prefrabicados: 
+                ( ListView, RepeatingView, PageableListView )
+ - Cada repetidor recibira una lista de los componentes que desea agregar. 
+ - Se colocaran en el orden preestablecido por los elementos de la lista. 
+
+Pendientes Formularios y botones..... 
+
+Habra una dependencia con bootstrap para que cada componente visual contenga sus grillas. 
+Todos los componentes compuestos seran responsables de implementar su propio markup.
+
+
+*************************** Optical Shell: ***************************************************
+
+Es una aplicacion de consola que permite la generacion automatica de componentes del framework 
+y admite configuraciones de lugar como scaffolding, configuracion de emails y fuentes de datos.
+generacion automatica de markups para cada componente. Una interfaz para para la generacion 
+de estos markups. Servicios de Deployment en contenedores externos.
+
+******************* Commons Optical ***********************************************************
+Un paquete de clases utilitarias como:
+    - Validacion y procesamiento de cadenas de texto.
+    
+    - Modulo de conversion de archivos de texto a formatos: CSV, EXCEL, PDF, TXT, XML, JSON.
+
+Una pagina web para colocar la documentacion y promover el framework. 
+
+ - Un generador de Quick-starts-projects basado en maven. 
+ - Un generador de Quick-starts-projects basado en Gradle. 

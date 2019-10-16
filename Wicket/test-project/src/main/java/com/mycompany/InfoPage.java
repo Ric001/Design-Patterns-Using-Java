@@ -39,8 +39,9 @@ public class InfoPage extends WebPage {
         final Label label = new Label("incoming-info", (Person) getSession().getAttribute("person"));
         final Label labelII = new Label("customer-info", (Customer) getSession().getAttribute(Customer.class.getName()));
         final ICustomAdder addingManager = new CustomAdder();
-        addingManager.add(this, label, labelII, goBackHome());
-        
+        final WebPage infoWebPageRef = this;
+
+        addingManager.setFatherContainer(infoWebPageRef).add(label, labelII, goBackHome());
         _LOG.info("[ENDING InfoPage()]");
     }
     

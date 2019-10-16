@@ -17,5 +17,7 @@ public interface ICustomAdder {
 
     public ICustomAdder setFatherContainer(AjaxRequestTarget target);
 
+    public boolean isConfigValid();
 
+    public ICustomAdder setConfig(boolean configurated);
 }

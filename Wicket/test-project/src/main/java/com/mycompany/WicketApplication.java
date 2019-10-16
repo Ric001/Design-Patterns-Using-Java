@@ -8,17 +8,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class WicketApplication extends WebApplication {
+
 	private final static Logger LOG = LoggerFactory.getLogger(WicketApplication.class);
 	private final static String APP_NAME_PREFIX = "wicket.";
 	private final static String EMPTY_SPACE = "";
+
 	@Override
 	public Class<? extends WebPage> getHomePage() {
-		return HomePage.class;
+		LOG.info("Getting Home PAGE");
+		
+		Class<? extends WebPage> classPage = HomePage.class;
+		return classPage;
 	}
 
 	@Override
-	public RuntimeConfigurationType getConfigurationType() {
-		return RuntimeConfigurationType.DEVELOPMENT;
+	public RuntimeConfigurationType getConfigurationType() 
+	{
+		return RuntimeConfigurationType.DEPLOYMENT;
 	}
 
 	@Override

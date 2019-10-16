@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import com.mycompany.command_infrastructure.creators.AjaxFallbackEventCreator;
@@ -11,13 +12,13 @@ import com.mycompany.command_infrastructure.events.exceptions.ErrorMessages;
 import com.mycompany.models.Cheese;
 import com.mycompany.my.commons.base.CustomAdder;
 
-
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -35,8 +36,10 @@ public class CheesePage extends WebPage {
     {
         final ListView<Cheese> cheesesListView = buildListView(loadableModel());
         final AjaxFallbackLink<Void> messageAdderEvent = ajaxLink("event"); 
+        final RepeatingView numberRepeater = numberRepater();
+        new CustomAdder().setFatherContainer(this)
+            .add(cheesesListView, messageAdderEvent, numberRepeater);
 
-        new CustomAdder().setFatherContainer(this).add(cheesesListView, messageAdderEvent);
     }
     
     public CheesePage(final PageParameters params) 
@@ -95,11 +98,15 @@ public class CheesePage extends WebPage {
     }
 
     private IModel<List<Cheese>> loadableModel() {
-        IModel<List<Cheese>> model = new LoadableDetachableModel<List<Cheese>>() {
+        _LOG.info("[ENTERING List<Cheese> loadableModel()]");
+
+        IModel<List<Cheese>> model = new LoadableDetachableModel<List<Cheese>>()
+        {
             private static final long serialVersionUID = 1L;
             
             @Override
-            public List<Cheese> load() {
+            public List<Cheese> load() 
+            {
                 _LOG.info("[ENTERING List<Cheese> load()]");
 
                 final List<Cheese> cheeses = new ArrayList<>();
@@ -110,6 +117,19 @@ public class CheesePage extends WebPage {
             }
         };
 
+        _LOG.info("[RETURNING FROM loadableModel() " + model + "]");
         return model;
     }
-}
+
+    private RepeatingView numberRepater()
+    {
+        _LOG.info("[ENTERING RepeatingView repeatingView()]");
+        final RepeatingView numberRepeater = new RepeatingView("rv");
+        for (int i = 0; i < 2; i++)  
+        {
+            numberRepeater.add(new Label(Integer.toString(i), i));
+        }
+        _LOG.info("[ENDING RepeatingView repeatingView() " + numberRepeater + "]");
+        return numberRepeater;
+    }
+} 

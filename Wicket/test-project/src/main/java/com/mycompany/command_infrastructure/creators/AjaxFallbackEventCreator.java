@@ -3,6 +3,8 @@ package com.mycompany.command_infrastructure.creators;
 import java.io.Serializable;
 import java.util.Optional;
 
+
+
 import com.mycompany.Strings;
 import com.mycompany.command_infrastructure.ICommand;
 import com.mycompany.command_infrastructure.events.AdderEvent;
@@ -46,7 +48,7 @@ public class AjaxFallbackEventCreator implements Serializable {
         _LOG.info("[ENTERING void setCommand(final Optional<? extends MarkupContainer> container, final Optional<? extends Component> component)]");
     }
 
-    public void setCommandTarget(final Optional<? extends AjaxRequestTarget> target, final Optional<? extends Component> component) {
+    public void createEventToBeExecutedOnTarget(final Optional<? extends AjaxRequestTarget> target, final Optional<? extends Component> component) {
         _LOG.info("[ENTERING void setCommandTarget(Optional<? extends AjaxRequestTarget> target, Optioanl<? extends Component> component)]");
 
         final Optional<ICustomAdder> opCustomAdder = Optional.of(new CustomAdder());
@@ -63,17 +65,19 @@ public class AjaxFallbackEventCreator implements Serializable {
         {
             throw new IllegalStateException(ErrorMessages.ILLEGAL_STATE_MESSAGE.toString());
         }
-           
+        
+    
         final AjaxFallbackLink<Void> event = new AjaxFallbackLink<Void>(id) 
         {
             private final static long serialVersionUID = 1L;
-
+            
             @Override
             public void onClick(Optional<AjaxRequestTarget> target) 
             {
                 if (target.isPresent() && opComponent.isPresent()) 
                 {
-                    setCommandTarget(target, opComponent);
+                    opComponent.get().setOutputMarkupId(true);
+                    createEventToBeExecutedOnTarget(target, opComponent);
                     eventExecuter.get().execute();
                 }
             }
@@ -82,4 +86,5 @@ public class AjaxFallbackEventCreator implements Serializable {
         _LOG.info("[RETURNING FROM AjaxFallbackLink<Void> event(final String id, final Optional<? extends Component> component)]");
         return event;
     }
+
 }

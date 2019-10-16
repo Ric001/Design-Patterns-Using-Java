@@ -5,8 +5,7 @@ public class App
     public static void main( String[] args )
     {
         final Loops loop = new Loops();
-        loop.whileLoop();
-        loop.doWhile();
+        loop.num20();
     }
 
     public static void print() {

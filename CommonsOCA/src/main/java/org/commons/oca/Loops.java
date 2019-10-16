@@ -193,4 +193,68 @@ public class Loops {
         _LOG.info("[RETURNING FROM String displayMenuToUser()] " + EXIT_OPTION);
         return EXIT_OPTION;
     }
+
+    public void breakTale() {
+        _LOG.info("[ENTERING void breakTale()]");
+        
+        final String[] programmers = { "Outer", "Inner" };
+        for (String outer : programmers) 
+        {
+            for (String inner : programmers)
+            {
+                if (inner.equals("Inner"))
+                    break;
+                System.out.print(inner + ":");   
+            }
+        }
+        _LOG.info("[ENDING void breakTale()]");
+    }
+
+    public void nameTale() 
+    {
+        _LOG.info("[ENTERING void nameTale()]");
+        
+        final String[] programmers = {"PAUL", "SHREYA", "SELVAN"};
+        for (String name : programmers)
+        {
+            if (name.equals("SHREYA"))
+            {
+                continue;
+            }
+            System.out.println(name);
+        }
+        _LOG.info("[ENDING void nameTale()]");
+    }
+
+    public void labeledExpressions() 
+    {
+        _LOG.info("[ENTERING void labeledExpressions()]");
+
+        final String[] programmers = {"Outer", "Inner"};
+        outer:
+            for (final String outer : programmers) 
+                for (final String inner : programmers) {
+                    if (inner.equals("Inner"))
+                        continue outer;
+                    System.out.println(inner + ":");
+                }
+        _LOG.info("[ENDING void labeledExpressions()]");
+    }
+
+    public void num20() 
+    {
+        _LOG.info("[ENTERING void num20()]");
+        
+        int num = 20;
+        final int num2 = 20;
+        
+        switch(num) 
+        {
+            case num2: System.out.println(4);
+            break;
+            default: System.out.println("Default");
+        }
+        
+        _LOG.info("[ENDING void num20()]");
+    }
 }
