@@ -31,11 +31,9 @@ public class HomePage extends WebPage {
 
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
-<<<<<<< HEAD
 		setResponsePage(CheesePage.class);
 		add(new PersonalInfo("personal-info"));
 		add(new CustomerInput("customer-info"));
-=======
 
 		add(new Label("message", "<h1>Hello World from a label component</h1>").setEscapeModelStrings(true));
 		add(new Label("message2", "SNAP OUT OF IT"));
@@ -96,7 +94,6 @@ public class HomePage extends WebPage {
 		System.out.println(link + "\n" + "Class: " + infoPageClass);
 		_LOG.info("[RETURNING BookmarkablePageLink link()]");
 		return link;
->>>>>>> 6e2de9b3152d8d989e701007a23bb3e637ed6e74
 	}
 
 	private void addingRecepies() 

@@ -1,5 +1,6 @@
 package org.commons.oca;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -256,5 +257,57 @@ public class Loops {
         }
         
         _LOG.info("[ENDING void num20()]");
+    }
+
+    public void tillICollapse()
+    {
+        _LOG.info("[ENTERING void tillICollapse()]");
+
+        _LOG.info("[ENDING void tillICollapse()]");
+    }
+}
+
+interface Runner 
+{
+    int speed();
+    double distance = 70;
+}
+
+strictfp interface RunnerII extends Runner {
+
+    static void askXamy()
+    {
+
+    }
+
+    default void submitInterviewStatus() {
+        System.out.println("Accept");
+    }
+}
+
+class Monday implements Runner 
+{
+    @Override
+    public int speed() {
+        return (int) distance;
+    }
+}
+
+
+interface Interviewer {
+    abstract void condudctInterview();
+
+    default void submitInterviewStatus() {
+        System.out.println("Accept");
+    }
+
+    static void bookConferenceRoom(final LocalDateTime dateTime, final int duration) {
+        System.out.println("Interview scheduled on:" + dateTime);
+        System.out.println("Book conference room for: " + duration + "hrs");
+    }
+
+    static void lostIt(final String songName, final String letterContent) {
+        System.out.println("All this time you were pretending so much for my happy ending");
+        System.out.println("");
     }
 }
