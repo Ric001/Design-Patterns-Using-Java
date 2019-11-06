@@ -1,22 +1,6 @@
-<<<<<<< HEAD
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\HomePage.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\InfoPage.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\models\Cheese.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\Strings.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\WicketApplication.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\my\commons\base\CustomAdder.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\wrappers\CheeseModel.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\CustomerInput.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\CheesePage.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\PersonalInfo.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\wrappers\LoadableCheeseModel.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\models\Customer.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\models\Person.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\my\commons\base\ICustomAdder.java
-C:\Users\Ricado Osorio Soto\DesignPatterns\Design-Patterns-Using-Java\Wicket\test-project\src\main\java\com\mycompany\models\Address.java
-=======
 C:\Users\jose osorio soto\HDOOA\HDesignPatterns\Wicket\test-project\src\main\java\com\mycompany\CustomerInput.java
 C:\Users\jose osorio soto\HDOOA\HDesignPatterns\Wicket\test-project\src\main\java\com\mycompany\wrappers\CheeseModel.java
+C:\Users\jose osorio soto\HDOOA\HDesignPatterns\Wicket\test-project\src\main\java\com\mycompany\wrappers\LoadableCheeseModel.java
 C:\Users\jose osorio soto\HDOOA\HDesignPatterns\Wicket\test-project\src\main\java\com\mycompany\command_infrastructure\creators\RedirectEventCreator.java
 C:\Users\jose osorio soto\HDOOA\HDesignPatterns\Wicket\test-project\src\main\java\com\mycompany\my\commons\base\CustomAdder.java
 C:\Users\jose osorio soto\HDOOA\HDesignPatterns\Wicket\test-project\src\main\java\com\mycompany\command_infrastructure\RedirectEvent.java
@@ -41,4 +25,3 @@ C:\Users\jose osorio soto\HDOOA\HDesignPatterns\Wicket\test-project\src\main\jav
 C:\Users\jose osorio soto\HDOOA\HDesignPatterns\Wicket\test-project\src\main\java\com\mycompany\InfoPage.java
 C:\Users\jose osorio soto\HDOOA\HDesignPatterns\Wicket\test-project\src\main\java\com\mycompany\HomePage.java
 C:\Users\jose osorio soto\HDOOA\HDesignPatterns\Wicket\test-project\src\main\java\com\mycompany\PersonalInfo.java
->>>>>>> 6e2de9b3152d8d989e701007a23bb3e637ed6e74

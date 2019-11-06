@@ -9,5 +9,8 @@ public class App
        final Duckable duck = new DuckAdapter(Optional.of(new Turkie()));
        duck.quack();
        duck.fly();
+       final Tukierable turkie = new TurkieAdapter(Optional.of(new MallardDuck()));
+       turkie.quack();
+       turkie.flyShort();
     }
 }

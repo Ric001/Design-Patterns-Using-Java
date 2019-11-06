@@ -1,0 +1,3 @@
+[main] DEBUG org.log.App  - Log4j appender configuration succesful !!
+[main] DEBUG org.log.App  - Log4j appender configuration succesful !!
+[main] INFO  org.log.App  - Tell me why are we so blind to see

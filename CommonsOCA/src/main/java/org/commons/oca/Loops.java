@@ -285,8 +285,7 @@ strictfp interface RunnerII extends Runner {
     }
 }
 
-class Monday implements Runner 
-{
+class Monday implements Runner {
     @Override
     public int speed() {
         return (int) distance;
@@ -310,4 +309,13 @@ interface Interviewer {
         System.out.println("All this time you were pretending so much for my happy ending");
         System.out.println("");
     }
+}
+
+class Emp implements Interviewer {
+
+    @Override
+    public void condudctInterview() {
+
+    }
+    
 }
