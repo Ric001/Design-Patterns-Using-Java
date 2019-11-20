@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import com.mycompany.command_infrastructure.creators.AjaxFallbackEventCreator;
@@ -52,8 +51,9 @@ public class CheesePage extends WebPage {
 
     private AjaxFallbackLink<Void> ajaxLink(final String id) {
         _LOG.info("[ENTERING AjaxFallbackLink<Void> ajaxLink(final String id)]");
+        System.out.println(String.format("\n=====> Ajax FallBack Link ID -> [%s] <====\n", id));
 
-        if (Strings.isNotNullOrEmpty(id))
+        if (Strings.isNullOrEmpty(id))
         {
             throw new IllegalStateException(ErrorMessages.ILLEGAL_STATE_MESSAGE.toString());
         }

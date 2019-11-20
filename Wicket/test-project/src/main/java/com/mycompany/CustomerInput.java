@@ -11,7 +11,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
 
-
 public class CustomerInput extends Form<Customer> {
 
     private static final long serialVersionUID = 1L;
@@ -52,20 +51,22 @@ public class CustomerInput extends Form<Customer> {
 
     public void setModels() {
         _LOG.info("[ENTERING void setModels(): void]");
-    
-        final CompoundPropertyModel<Customer> model = new CompoundPropertyModel<>(new Customer()); 
+
+        final CompoundPropertyModel<Customer> model = new CompoundPropertyModel<>(new Customer());
         street.setModel(model.bind("address.street"));
         this.setModel(model);
 
         _LOG.info("[ENDING void setModels(): void]");
     }
+
     public void putOnContainer() {
         _LOG.info("[ENTERING void putOnContainer()]");
 
-       final ICustomAdder  customAdder = new CustomAdder();
-       customAdder.add(this, documentId, name, lastname, accountNumber, street, city, country, send); 
-    
-       _LOG.info("[ENDING void putOnContainer()]");
+        final ICustomAdder customAdder = new CustomAdder();
+        customAdder.setFatherContainer(this).add(documentId, name, lastname, accountNumber, street, city, country,
+                send);
+
+        _LOG.info("[ENDING void putOnContainer()]");
     }
 
     @Override
@@ -76,7 +77,7 @@ public class CustomerInput extends Form<Customer> {
         getSession().setAttribute(customer.getClass().getName(), customer);
         setResponsePage(InfoPage.class);
         System.out.println(customer);
-        
+
         _LOG.info("[ENTERING onSubmit(): void]");
     }
 

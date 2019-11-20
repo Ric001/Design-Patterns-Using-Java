@@ -60,7 +60,7 @@ public class AjaxFallbackEventCreator implements Serializable {
     public AjaxFallbackLink<Void> addingEvent(final String id, Optional<? extends Component> opComponent) 
     {
         _LOG.info("[ENTERING AjaxFallbackLink<Void> event(final String id, final Optional<? extends Component> component)]");
-
+       
         if (Strings.isNullOrEmpty(id))
         {
             throw new IllegalStateException(ErrorMessages.ILLEGAL_STATE_MESSAGE.toString());

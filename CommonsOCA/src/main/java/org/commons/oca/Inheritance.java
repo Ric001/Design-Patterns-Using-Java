@@ -109,3 +109,11 @@ class Doctor extends Employee {
         this.surgery = surgery;
     }
 }
+
+interface Interviewer {
+
+}
+
+class OfficeWhyCasting  {
+
+}

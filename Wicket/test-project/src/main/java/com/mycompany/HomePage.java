@@ -9,12 +9,17 @@ import com.mycompany.command_infrastructure.creators.RedirectEventCreator;
 import com.mycompany.command_infrastructure.events.exceptions.ErrorMessages;
 import com.mycompany.models.Recipe;
 import com.mycompany.my.commons.base.CustomAdder;
+import com.mycompany.my.commons.base.ICustomAdder;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.basic.MultiLineLabel;
+import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
@@ -54,10 +59,14 @@ public class HomePage extends WebPage {
 		final RepeatingView repeatingView = menu("link-menu");
 		final Link<Void> redirector = redirectionEvent("redirecter");
 		final RepeatingView numberRepeater = numberRepeater("numbers");
-
-		new CustomAdder()
+		final Button sendButton = new Button("send");
+		final TextField<String> nameInput = new TextField<>("name");
+		final Form<Void> nameForm = form("nameForm", sendButton, nameInput);
+		
+		final ICustomAdder adder =  new CustomAdder()
 			.setFatherContainer(this)
-			.add(redirector, numberRepeater, repeatingView);
+			.add(redirector, numberRepeater, repeatingView)
+			.add(nameForm);
 	}
 
 	private Link<Void> redirectionEvent(final String id) 
@@ -181,7 +190,20 @@ public class HomePage extends WebPage {
 		return Collections.unmodifiableList(items);	
 	}
 
-	 
+	private Form<Void> form(final String id, Component... components) 
+	{
+		_LOG.info("[ENTERING Form<Void> form()]");
 
-	
+		final Form<Void> form = new Form<Void>(id) {
+			public final static long serialVersionUID = 1L;
+			@Override
+			public void onSubmit() {
+				System.out.println(String.format("\n======> Form Component [%s] <=======\n", this));
+			}
+		};
+		new CustomAdder().setFatherContainer(form).add(components);
+
+		_LOG.info(String.format("[RETURNING FROM Form<Void> form() -> [%s]", form));
+		return form;
+	}
 }

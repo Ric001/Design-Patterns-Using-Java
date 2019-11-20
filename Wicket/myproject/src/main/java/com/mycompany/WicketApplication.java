@@ -27,7 +27,10 @@ public class WicketApplication extends WebApplication
 	public void init()
 	{
 		super.init();
-
+		//RequestCycleSettings requestCycleSettings = getRequestCycleSettings();
+		//requestCycleSettings.setRenderStrategy(RenderStrategy.REDIRECT_TO_BUFFER);
+		//requestCycleSettings.setRenderStrategy(RenderStrategy.ONE_PASS_RENDER);
+		//requestCycleSettings.setRenderStrategy(RenderStrategy.REDIRECT_TO_BUFFER);
 		// add your configuration here
 	}
 }
