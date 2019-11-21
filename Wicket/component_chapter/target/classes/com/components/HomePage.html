@@ -7,16 +7,21 @@
 		<form wicket:id="form" method="POST">
 			<textarea wicket:id="txtArea" id="" cols="30" rows="10"></textarea>
 			<select wicket:id="category">
-				<option>[Option Value]</option>
+				<option>[OPTION VALUE GOES HERE]</option>
 			</select>
 			<select wicket:id="dropdown">
 				<option>[OPTION VALUE GOES HERE]</option>
 			</select>
+			<select wicket:id="multiple" multiple="multiple">
+				<option>[Milk Types Goes here]</option>
+			</select>
 			<span wicket:id="radioChoices">
 				<input type="radio">
 			</span>
+			<span wicket:id="checkboxes">
+				<input type="checkbox">
+			</span>
+			<input type="submit" value="Print to the Console" wicket:id="send" />
 		</form>
-	
-		
 	</body>
 </html>

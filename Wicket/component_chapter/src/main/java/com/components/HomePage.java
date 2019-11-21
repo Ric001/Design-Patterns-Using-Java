@@ -1,7 +1,5 @@
 package com.components;
 
-import org.apache.wicket.request.mapper.parameter.PageParameters;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,14 +9,16 @@ import java.util.logging.Logger;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.form.CheckBoxMultipleChoice;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.ListChoice;
+import org.apache.wicket.markup.html.form.ListMultipleChoice;
 import org.apache.wicket.markup.html.form.RadioChoice;
 import org.apache.wicket.markup.html.form.TextArea;
-import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.Model;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
@@ -27,10 +27,10 @@ public class HomePage extends WebPage {
 
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
-		final Form<Void> form = form("form");
-		// final Form<Details> detailsForm = compoundPropertyForm("cpmForm");
+		Form<Void> form = multipleChoices(form("form"));
+		form = checkBoxMultipleChoices(form);
 		add(form);
-
+		// final Form<Details> detailsForm = compoundPropertyForm("cpmForm");
 	}
 
 	private Form<Void> form(final String id) {
@@ -47,7 +47,7 @@ public class HomePage extends WebPage {
 		final DropDownChoice<String> dropDownChoice = new DropDownChoice<>("dropdown",
 				new PropertyModel<>(details, "dropChoice"), categories);
 		final RadioChoice<String> radioChoices = new RadioChoice<>("radioChoices", new PropertyModel<>(details, "radioChoice"), categories);
-		
+		radioChoices.setSuffix("<br>");		
 		details.setCategory("Blue Vein");
 		details.setDropChoice("VENUS");
 		listChoice.add(new AttributeModifier("size", categories.size()));
@@ -56,6 +56,43 @@ public class HomePage extends WebPage {
 		form.add(dropDownChoice);
 		form.add(radioChoices);
 		LOG.info("[RETURNING FROM Form<Void> form()]");
+		return form;
+	}
+
+	private Form<Void> multipleChoices(Form<Void> form) {
+		LOG.info("[ENTERING Form<Vodid> multipleChoices(Form<Void> form)]");
+
+		if (Objects.isNull(form))
+			return form;
+		
+		final List<String> choices = Arrays.asList("Camel", "Cow", "Goat", "Something");
+		final Cheese cheese = new Cheese();
+		
+		final ListMultipleChoice<String> multipleChoice = new ListMultipleChoice<>("multiple",new PropertyModel<>(cheese, "milkTypes"), choices);
+		final Link<Void> submit = new Link<Void>("send") {
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void onClick() {
+				System.out.println(String.format("[ <==== CHEESE ====> %s]", multipleChoice.getDefaultModel().toString()));
+			}
+		};
+		form.add(multipleChoice);
+		form.add(submit);
+		LOG.info("[RETURNING FROM Form<Void> multipleChoices(Form<Void> form)]");
+		return form;
+	}
+
+	private Form<Void> checkBoxMultipleChoices(Form<Void> form) {
+		LOG.info("[ENTERING Form<Void> checkBoxMultipleChoices(Form<Void> form)]");
+		if (Objects.isNull(form))
+			return form;
+		
+		final List<String> choices = Arrays.asList("Camel", "Cow", "Kangaroo");
+		final Cheese cheese = new Cheese();
+		final CheckBoxMultipleChoice<String> checkBoxes = new CheckBoxMultipleChoice<>("checkboxes", new PropertyModel<>(cheese, "milkTypes"), choices);
+		form.add(checkBoxes);
+
+		LOG.info("[RETURNING FROM Form<Void> checkBoxMultipleChoices(Form<Void> form)]");
 		return form;
 	}
 
@@ -105,4 +142,28 @@ class Details implements Serializable {
 		this.category = category;
 	}
 
+}
+
+
+class Cheese implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	private List<String> milkTypes = new ArrayList<>();
+
+	public List<String> getMilkTypes() {
+		return milkTypes;
+	}
+
+	public void setMilkTypes(List<String> milkTypes) {
+		this.milkTypes = milkTypes;
+	}
+
+	@Override
+	public String toString() {
+		return "Cheese [milkTypes=" + milkTypes + "]";
+	}
+
+	
+	
 }
